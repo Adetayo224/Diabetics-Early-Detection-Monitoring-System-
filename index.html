@@ -373,6 +373,30 @@
             color: #e63946;
         }
 
+
+    .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+    color: white;
+    font-size: 1.8rem;
+}
+
+.logo-img {
+    width: 45px; /* adjust size if needed */
+    height: 45px;
+    object-fit: contain;
+    border-radius: 8px; /* optional, gives smooth corners */
+}
+@media (max-width: 768px) {
+    .logo-img {
+        width: 35px;
+        height: 35px;
+    }
+}
+        
+        
         /* Contact Section */
         .contact {
             background: linear-gradient(135deg, #f8f9fa, #fff);
@@ -444,7 +468,10 @@
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <div class="logo">🦶 Diamon</div>
+            <div class="logo">
+    <img src="https://i.imgur.com/HdwHHjr.png" alt="Diamon Logo" class="logo-img">
+    <span>Diamon</span>
+    </div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#how-it-works">How It Works</a></li>
