@@ -3,27 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Diamon Login</title>
+  <title>Diamon – Saving Limbs, Restoring Lives</title>
   <style>
-    body {
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
       font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: #333;
+      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
-      color: white;
-      margin: 0;
+      overflow: hidden;
     }
 
+    .hidden {
+      display: none;
+    }
+
+    /* Login Section */
     .login-box {
       background: white;
-      color: #333;
       padding: 40px;
       border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
       width: 350px;
       text-align: center;
+      animation: fadeIn 1s ease;
+    }
+
+    .login-box img {
+      width: 80px;
+      margin-bottom: 10px;
     }
 
     .login-box h2 {
@@ -67,15 +83,117 @@
     .demo-info strong {
       color: #e63946;
     }
+
+    /* Hospital Selection */
+    .hospital-selection {
+      background: white;
+      color: #333;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      width: 90%;
+      max-width: 600px;
+      text-align: center;
+      animation: fadeIn 0.8s ease;
+    }
+
+    .hospital-selection img {
+      width: 90px;
+      margin-bottom: 15px;
+    }
+
+    select {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+    }
+
+    /* Dashboard Section */
+    .dashboard {
+      display: none;
+      background: #f5f7fa;
+      width: 100%;
+      height: 100vh;
+      overflow-y: auto;
+      animation: fadeIn 0.8s ease;
+    }
+
+    .nav-bar {
+      background: #1e3c72;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-bar img {
+      width: 40px;
+      margin-right: 10px;
+    }
+
+    .nav-bar h2 {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .dashboard-content {
+      padding: 2rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .card h3 {
+      color: #1e3c72;
+      margin-bottom: 0.5rem;
+    }
+
+    .card p {
+      color: #555;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 1rem;
+      background: #1e3c72;
+      color: white;
+      font-size: 0.9rem;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
   </style>
 </head>
 <body>
-  <div class="login-box">
+
+  <!-- LOGIN PAGE -->
+  <div class="login-box" id="loginPage">
+    <img src="https://i.imgur.com/HdwHHjr.png" alt="Diamon Logo">
     <h2>Login to Diamon</h2>
     <input type="email" id="email" placeholder="Email" required>
     <input type="password" id="password" placeholder="Password" required>
     <button onclick="login()">Login</button>
-
     <div class="demo-info">
       <p><strong>Demo accounts:</strong></p>
       <p>Patient: diamonpatient@gmail.com</p>
@@ -84,17 +202,110 @@
     </div>
   </div>
 
+  <!-- HOSPITAL SELECTION -->
+  <div class="hospital-selection hidden" id="hospitalPage">
+    <img src="https://i.imgur.com/HdwHHjr.png" alt="Diamon Logo">
+    <h2>🏥 Partner Hospitals</h2>
+    <p>Please select your preferred hospital below. You’ll be matched with a doctor in your area.</p>
+
+    <select id="hospitalSelect">
+      <option value="">Select Hospital</option>
+      <option>LAUTECH Teaching Hospital, Ogbomoso</option>
+      <option>Bowen University Teaching Hospital, Ogbomoso</option>
+      <option>Oyo State General Hospital, Oyo Town</option>
+      <option>Ring Road Specialist Hospital, Ibadan</option>
+      <option>University College Hospital (UCH), Ibadan</option>
+      <option>Ilorin General Hospital, Ilorin</option>
+      <option>University of Ilorin Teaching Hospital (UITH), Ilorin</option>
+      <option>FOMWAN Clinic, Ilorin</option>
+      <option>Ogbomoso Central Hospital</option>
+      <option>Federal Medical Centre, Oyo</option>
+    </select>
+
+    <button onclick="proceedToDashboard()">Continue</button>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div class="dashboard" id="dashboardPage">
+    <div class="nav-bar">
+      <h2><img src="https://i.imgur.com/HdwHHjr.png" alt="Logo"> Diamon Dashboard</h2>
+      <button onclick="logout()" style="background:#e63946; color:white; border:none; padding:8px 15px; border-radius:6px; cursor:pointer;">Logout</button>
+    </div>
+    <div class="dashboard-content" id="dashboardContent"></div>
+    <div class="footer">Diamon © 2025 | Saving Limbs, Restoring Lives 💙</div>
+  </div>
+
   <script>
     function login() {
       const email = document.getElementById('email').value.trim().toLowerCase();
-
       if (email === "diamonpatient@gmail.com") {
-        window.location.href = "patient_dashboard.html";
+        document.getElementById('loginPage').classList.add('hidden');
+        document.getElementById('hospitalPage').classList.remove('hidden');
       } else if (email === "diamondoctor@gmail.com") {
-        window.location.href = "doctor_dashboard.html";
+        showDoctorDashboard();
       } else {
         alert("Access denied. Use demo accounts listed below.");
       }
+    }
+
+    function proceedToDashboard() {
+      const hospital = document.getElementById('hospitalSelect').value;
+      if (!hospital) {
+        alert("Please select a hospital to continue.");
+        return;
+      }
+      localStorage.setItem('selectedHospital', hospital);
+
+      const doctors = [
+        "Dr. Tunde Olayemi",
+        "Dr. Aisha Bello",
+        "Dr. John Adebayo",
+        "Dr. Grace Ilori",
+        "Dr. Musa Abubakar"
+      ];
+      const assignedDoctor = doctors[Math.floor(Math.random() * doctors.length)];
+      localStorage.setItem('assignedDoctor', assignedDoctor);
+
+      showPatientDashboard(hospital, assignedDoctor);
+    }
+
+    function showPatientDashboard(hospital, doctor) {
+      document.getElementById('hospitalPage').classList.add('hidden');
+      document.getElementById('dashboardPage').classList.remove('hidden');
+
+      document.getElementById('dashboardContent').innerHTML = `
+        <h2 style="color:#1e3c72;">Welcome, Diamon Patient 👟</h2>
+        <p style="margin-top:10px;">You are connected to <strong>${doctor}</strong> at <strong>${hospital}</strong>.</p>
+        <div class="cards" style="margin-top:2rem;">
+          <div class="card"><h3>🌡️ Foot Temperature</h3><p>Monitored: 33.4°C (Normal)</p></div>
+          <div class="card"><h3>👣 Foot Pressure</h3><p>Balanced load detected</p></div>
+          <div class="card"><h3>💧 Humidity</h3><p>73% - within safe limits</p></div>
+          <div class="card"><h3>🚶 Step Count</h3><p>5060 steps today</p></div>
+        </div>
+      `;
+    }
+
+    function showDoctorDashboard() {
+      document.getElementById('loginPage').classList.add('hidden');
+      document.getElementById('dashboardPage').classList.remove('hidden');
+
+      document.getElementById('dashboardContent').innerHTML = `
+        <h2 style="color:#1e3c72;">Welcome, Dr. Diamon 🩺</h2>
+        <p>Here’s your overview of patient data and insights.</p>
+        <div class="cards" style="margin-top:2rem;">
+          <div class="card"><h3>👥 Active Patients</h3><p>24 Monitored</p></div>
+          <div class="card"><h3>⚠️ Alerts Today</h3><p>2 Possible Ulcer Risks</p></div>
+          <div class="card"><h3>📊 Average Temperature</h3><p>33.8°C</p></div>
+          <div class="card"><h3>📅 Appointments</h3><p>Next follow-up: 8 Nov 2025</p></div>
+        </div>
+      `;
+    }
+
+    function logout() {
+      localStorage.clear();
+      document.querySelectorAll('.hidden').forEach(el => el.classList.remove('hidden'));
+      document.getElementById('dashboardPage').classList.add('hidden');
+      document.getElementById('hospitalPage').classList.add('hidden');
     }
   </script>
 </body>
