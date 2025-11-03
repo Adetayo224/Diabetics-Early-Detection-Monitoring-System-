@@ -105,6 +105,18 @@
             color: #666;
         }
 
+        /* Prevent charts from pushing layout */
+.card canvas {
+  width: 100% !important;
+  height: 260px !important;
+  display: block;
+  margin: 0 auto;
+}
+
+.grid {
+  align-items: start;
+}
+
         /* Hospital Picker */
         #pickerView {
             min-height: 100vh;
