@@ -1,305 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diamon - Login Portal</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diamon Login</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+      margin: 0;
+    }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #e63946 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
+    .login-box {
+      background: white;
+      color: #333;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      width: 350px;
+      text-align: center;
+    }
 
-        .container {
-            max-width: 1000px;
-            width: 100%;
-        }
+    .login-box h2 {
+      color: #1e3c72;
+      margin-bottom: 1.5rem;
+    }
 
-        .header {
-            text-align: center;
-            color: white;
-            margin-bottom: 3rem;
-        }
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
 
-        .logo {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
+    button {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, #e63946, #c1121f);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
 
-        .header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
+    button:hover {
+      transform: scale(1.03);
+    }
 
-        .header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
+    .demo-info {
+      background: #f8f9fa;
+      color: #333;
+      margin-top: 20px;
+      padding: 10px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+    }
 
-        .login-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .login-card {
-            background: white;
-            border-radius: 20px;
-            padding: 3rem;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-            transition: transform 0.3s;
-        }
-
-        .login-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .card-icon {
-            font-size: 4rem;
-            text-align: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .card-title {
-            text-align: center;
-            color: #1e3c72;
-            font-size: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        label {
-            display: block;
-            color: #333;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        input {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        input:focus {
-            outline: none;
-            border-color: #1e3c72;
-        }
-
-        .login-btn {
-            width: 100%;
-            padding: 1rem;
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-            margin-top: 1rem;
-        }
-
-        .login-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(30, 60, 114, 0.4);
-        }
-
-        .forgot-password {
-            text-align: center;
-            margin-top: 1rem;
-        }
-
-        .forgot-password a {
-            color: #1e3c72;
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-
-        .forgot-password a:hover {
-            text-decoration: underline;
-        }
-
-        .back-home {
-            text-align: center;
-            margin-top: 2rem;
-        }
-
-        .back-home a {
-            color: white;
-            text-decoration: none;
-            font-size: 1.1rem;
-            padding: 0.8rem 2rem;
-            background: rgba(255,255,255,0.2);
-            border-radius: 30px;
-            display: inline-block;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.3);
-            transition: background 0.3s;
-        }
-
-        .back-home a:hover {
-            background: rgba(255,255,255,0.3);
-        }
-
-        .register-link {
-            text-align: center;
-            margin-top: 1.5rem;
-            color: #666;
-        }
-
-        .register-link a {
-            color: #e63946;
-            font-weight: bold;
-            text-decoration: none;
-        }
-
-        .register-link a:hover {
-            text-decoration: underline;
-        }
-
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2rem;
-            }
-
-            .login-card {
-                padding: 2rem;
-            }
-
-            .card-title {
-                font-size: 1.5rem;
-            }
-        }
-    </style>
+    .demo-info strong {
+      color: #e63946;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="logo">🦶</div>
-            <h1>Welcome to Diamon</h1>
-            <p>Choose your portal to continue</p>
-        </div>
+  <div class="login-box">
+    <h2>Login to Diamon</h2>
+    <input type="email" id="email" placeholder="Email" required>
+    <input type="password" id="password" placeholder="Password" required>
+    <button onclick="login()">Login</button>
 
-        <div class="login-grid">
-            <!-- Patient Login -->
-            <div class="login-card">
-                <div class="card-icon">👤</div>
-                <h2 class="card-title">Patient Portal</h2>
-                <form id="patientForm" onsubmit="handlePatientLogin(event)">
-                    <div class="form-group">
-                        <label for="patient-email">Email Address</label>
-                        <input type="email" id="patient-email" placeholder="Enter your email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="patient-password">Password</label>
-                        <input type="password" id="patient-password" placeholder="Enter your password" required>
-                    </div>
-                    <button type="submit" class="login-btn">Login as Patient</button>
-                </form>
-                <div class="forgot-password">
-                    <a href="#">Forgot Password?</a>
-                </div>
-                <div class="register-link">
-                    Don't have an account? <a href="#">Register Now</a>
-                </div>
-            </div>
-
-            <!-- Doctor Login -->
-            <div class="login-card">
-                <div class="card-icon">👨‍⚕️</div>
-                <h2 class="card-title">Doctor Portal</h2>
-                <form id="doctorForm" onsubmit="handleDoctorLogin(event)">
-                    <div class="form-group">
-                        <label for="doctor-email">Email Address</label>
-                        <input type="email" id="doctor-email" placeholder="Enter your email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="doctor-password">Password</label>
-                        <input type="password" id="doctor-password" placeholder="Enter your password" required>
-                    </div>
-                    <button type="submit" class="login-btn">Login as Doctor</button>
-                </form>
-                <div class="forgot-password">
-                    <a href="#">Forgot Password?</a>
-                </div>
-                <div class="register-link">
-                    Need access? <a href="#">Request Account</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="back-home">
-            <a href="index.html">← Back to Home</a>
-        </div>
+    <div class="demo-info">
+      <p><strong>Demo accounts:</strong></p>
+      <p>Patient: diamonpatient@gmail.com</p>
+      <p>Doctor: diamondoctor@gmail.com</p>
+      <p>(Use any password)</p>
     </div>
+  </div>
 
-    <script>
-        function handlePatientLogin(event) {
-            event.preventDefault();
-            
-            const email = document.getElementById('patient-email').value;
-            const password = document.getElementById('patient-password').value;
-            
-            // Temporary demo - will be replaced with real authentication
-            if (email && password) {
-                alert('Patient login successful! (Demo Mode)\n\nRedirecting to patient dashboard...');
-                // Future: window.location.href = 'patient-dashboard.html';
-                
-                // For now, show coming soon message
-                setTimeout(() => {
-                    alert('Patient Dashboard - Coming Soon!\n\nFeatures:\n• View your temperature readings\n• Track trends over time\n• Receive alerts\n• Connect with your doctor');
-                }, 500);
-            }
-        }
+  <script>
+    function login() {
+      const email = document.getElementById('email').value.trim().toLowerCase();
 
-        function handleDoctorLogin(event) {
-            event.preventDefault();
-            
-            const email = document.getElementById('doctor-email').value;
-            const password = document.getElementById('doctor-password').value;
-            
-            // Temporary demo - will be replaced with real authentication
-            if (email && password) {
-                alert('Doctor login successful! (Demo Mode)\n\nRedirecting to doctor dashboard...');
-                // Future: window.location.href = 'doctor-dashboard.html';
-                
-                // For now, show coming soon message
-                setTimeout(() => {
-                    alert('Doctor Dashboard - Coming Soon!\n\nFeatures:\n• Monitor all patients\n• Receive critical alerts\n• View patient history\n• Send recommendations');
-                }, 500);
-            }
-        }
-
-        // Add some interactivity
-        const inputs = document.querySelectorAll('input');
-        inputs.forEach(input => {
-            input.addEventListener('focus', function() {
-                this.parentElement.style.transform = 'scale(1.02)';
-                this.parentElement.style.transition = 'transform 0.3s';
-            });
-            
-            input.addEventListener('blur', function() {
-                this.parentElement.style.transform = 'scale(1)';
-            });
-        });
-    </script>
+      if (email === "diamonpatient@gmail.com") {
+        window.location.href = "patient_dashboard.html";
+      } else if (email === "diamondoctor@gmail.com") {
+        window.location.href = "doctor_dashboard.html";
+      } else {
+        alert("Access denied. Use demo accounts listed below.");
+      }
+    }
+  </script>
 </body>
 </html>
