@@ -1,312 +1,551 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Diamon – Saving Limbs, Restoring Lives</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', sans-serif;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Diamon – Saving Limbs, Restoring Lives</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+  :root{
+    --primary:#1e3c72;
+    --primary-2:#2a5298;
+    --accent:#e63946;
+    --bg:#f5f7fa;
+    --card:#ffffff;
+    --muted:#6b7280;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    color:#0f172a;
+    background:linear-gradient(135deg,var(--primary),var(--primary-2));
+    display:flex;align-items:center;justify-content:center;
+  }
+  .hidden{display:none!important}
 
-    body {
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
-      color: #333;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-    }
+  /* ========== LOGIN ========== */
+  .login{
+    width:min(420px,92vw);
+    background:#fff; padding:36px 28px; border-radius:16px;
+    box-shadow:0 20px 60px rgba(0,0,0,.25);
+    text-align:center; animation:fadeIn .6s ease;
+  }
+  .login img{width:86px; height:auto; margin-bottom:10px}
+  .login h2{margin:6px 0 18px; color:var(--primary)}
+  .login input{
+    width:100%; padding:12px 14px; margin:.45rem 0 .75rem;
+    border:1px solid #e5e7eb; border-radius:10px; font-size:15px;
+  }
+  .btn{
+    appearance:none; border:none; cursor:pointer; font-weight:700;
+    border-radius:10px; padding:12px 16px;
+    background:linear-gradient(135deg,var(--accent),#c1121f); color:#fff;
+    width:100%; transition:.15s transform,.15s box-shadow;
+  }
+  .btn:hover{transform:translateY(-1px);box-shadow:0 10px 24px rgba(230,57,70,.35)}
+  .demo{
+    margin-top:14px; font-size:.92rem; background:#f8fafc; border:1px solid #eef2ff;
+    border-radius:10px; padding:10px; color:#111827; text-align:left
+  }
+  .demo b{color:var(--accent)}
 
-    .hidden {
-      display: none;
-    }
+  /* ========== HOSPITAL PICKER (full page) ========== */
+  .picker{
+    width:min(640px,94vw);
+    background:#fff; color:#111827; padding:34px 26px; border-radius:16px;
+    box-shadow:0 20px 60px rgba(0,0,0,.25); animation:fadeIn .5s ease;
+  }
+  .picker h2{margin:0 0 8px; color:var(--primary)}
+  .picker p{color:#374151; margin:0 0 18px}
+  .picker select{
+    width:100%; padding:12px; border:1px solid #e5e7eb; border-radius:10px; font-size:15px;
+    margin-bottom:16px;
+  }
+  .picker .row{display:flex; gap:10px}
+  .picker .btn{width:auto; padding:12px 18px}
 
-    /* Login Section */
-    .login-box {
-      background: white;
-      padding: 40px;
-      border-radius: 15px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-      width: 350px;
-      text-align: center;
-      animation: fadeIn 1s ease;
-    }
+  /* ========== APP LAYOUT ========== */
+  .app{display:flex; width:100%; height:100%; background:var(--bg)}
+  .sidebar{
+    width:280px; min-width:260px; background:#fff; height:100%;
+    border-right:1px solid #e5e7eb; display:flex; flex-direction:column;
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px; padding:16px 18px; border-bottom:1px solid #eef2ff;
+  }
+  .brand img{width:40px} .brand h1{font-size:20px; margin:0; color:#0f172a}
+  .menu{padding:12px}
+  .menu a{
+    display:flex; align-items:center; gap:10px;
+    padding:12px 14px; margin:6px 0; border-radius:10px; text-decoration:none;
+    color:#0f172a; font-weight:600;
+  }
+  .menu a.active, .menu a:hover{background:#eef2ff; color:var(--primary)}
+  .help{
+    margin:auto 12px 16px; background:linear-gradient(135deg,var(--primary),var(--primary-2));
+    color:#fff; border-radius:12px; padding:16px; font-size:.92rem;
+  }
 
-    .login-box img {
-      width: 80px;
-      margin-bottom: 10px;
-    }
+  .main{flex:1; display:flex; flex-direction:column; height:100%}
+  .topbar{
+    height:64px; background:#fff; border-bottom:1px solid #e5e7eb;
+    display:flex; align-items:center; justify-content:space-between; padding:0 18px;
+  }
+  .topbar .where{font-weight:800; color:#0f172a}
+  .topbar .right{display:flex; align-items:center; gap:8px; color:#475569}
+  .topbar .tag{background:#ecfeff; color:#0891b2; font-weight:700; border-radius:999px; padding:6px 10px; font-size:.82rem}
 
-    .login-box h2 {
-      color: #1e3c72;
-      margin-bottom: 1.5rem;
-    }
+  .content{padding:20px; overflow:auto}
+  .grid{display:grid; gap:16px; grid-template-columns:repeat(12,1fr)}
+  .card{
+    grid-column:span 3; background:var(--card); border:1px solid #e5e7eb;
+    border-radius:14px; padding:16px;
+  }
+  .card.wide{grid-column:span 6}
+  .card.full{grid-column:1/-1}
+  .card h3{margin:0 0 6px; color:#0f172a}
+  .muted{color:var(--muted); font-size:.9rem}
+  canvas{max-width:100%}
 
-    input {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-    }
+  /* Responsive */
+  @media (max-width:1024px){
+    .card{grid-column:span 6}
+  }
+  @media (max-width:720px){
+    body{align-items:flex-start}
+    .sidebar{position:fixed; z-index:9; transform:translateX(-100%); transition:.25s}
+    .sidebar.open{transform:none}
+    .topbar .burger{display:inline-block}
+    .topbar button{border:none;background:#fff}
+    .card{grid-column:1/-1}
+  }
 
-    button {
-      width: 100%;
-      padding: 12px;
-      background: linear-gradient(135deg, #e63946, #c1121f);
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: transform 0.2s;
-    }
-
-    button:hover {
-      transform: scale(1.03);
-    }
-
-    .demo-info {
-      background: #f8f9fa;
-      color: #333;
-      margin-top: 20px;
-      padding: 10px;
-      border-radius: 10px;
-      font-size: 0.9rem;
-    }
-
-    .demo-info strong {
-      color: #e63946;
-    }
-
-    /* Hospital Selection */
-    .hospital-selection {
-      background: white;
-      color: #333;
-      padding: 40px;
-      border-radius: 15px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-      width: 90%;
-      max-width: 600px;
-      text-align: center;
-      animation: fadeIn 0.8s ease;
-    }
-
-    .hospital-selection img {
-      width: 90px;
-      margin-bottom: 15px;
-    }
-
-    select {
-      width: 100%;
-      padding: 12px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      margin-bottom: 1.5rem;
-      font-size: 1rem;
-    }
-
-    /* Dashboard Section */
-    .dashboard {
-      display: none;
-      background: #f5f7fa;
-      width: 100%;
-      height: 100vh;
-      overflow-y: auto;
-      animation: fadeIn 0.8s ease;
-    }
-
-    .nav-bar {
-      background: #1e3c72;
-      color: white;
-      padding: 1rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .nav-bar img {
-      width: 40px;
-      margin-right: 10px;
-    }
-
-    .nav-bar h2 {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .dashboard-content {
-      padding: 2rem;
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .card {
-      background: white;
-      border-radius: 10px;
-      padding: 1.5rem;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-      text-align: center;
-    }
-
-    .card h3 {
-      color: #1e3c72;
-      margin-bottom: 0.5rem;
-    }
-
-    .card p {
-      color: #555;
-    }
-
-    .footer {
-      text-align: center;
-      padding: 1rem;
-      background: #1e3c72;
-      color: white;
-      font-size: 0.9rem;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-    }
-
-    @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(20px);}
-      to {opacity: 1; transform: translateY(0);}
-    }
-  </style>
+  @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+</style>
 </head>
 <body>
 
-  <!-- LOGIN PAGE -->
-  <div class="login-box" id="loginPage">
-    <img src="https://i.imgur.com/HdwHHjr.png" alt="Diamon Logo">
-    <h2>Login to Diamon</h2>
-    <input type="email" id="email" placeholder="Email" required>
-    <input type="password" id="password" placeholder="Password" required>
-    <button onclick="login()">Login</button>
-    <div class="demo-info">
-      <p><strong>Demo accounts:</strong></p>
-      <p>Patient: diamonpatient@gmail.com</p>
-      <p>Doctor: diamondoctor@gmail.com</p>
-      <p>(Use any password)</p>
+<!-- ========== LOGIN VIEW ========== -->
+<section id="loginView" class="login">
+  <img src="https://i.imgur.com/HdwHHjr.png" alt="Diamon Logo" />
+  <h2>Login to Diamon</h2>
+  <input type="email" id="email" placeholder="Email" required />
+  <input type="password" id="password" placeholder="Password" required />
+  <button class="btn" onclick="handleLogin()">Login</button>
+
+  <div class="demo">
+    <b>Demo accounts:</b><br>
+    Patient: <code>diamonpatient@gmail.com</code><br>
+    Doctor: <code>diamondoctor@gmail.com</code> (or <code>iamondoctor@gmail.com</code>)<br>
+    (Use any password)
+  </div>
+</section>
+
+<!-- ========== HOSPITAL SELECTION VIEW ========== -->
+<section id="pickerView" class="picker hidden">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+    <img src="https://i.imgur.com/HdwHHjr.png" alt="Diamon">
+    <h2>Partner Hospitals</h2>
+  </div>
+  <p>Please select your preferred hospital. We’ll match you with a doctor in your locality.</p>
+
+  <select id="hospitalSelect">
+    <option value="">Select Hospital</option>
+    <option>LAUTECH Teaching Hospital, Ogbomoso</option>
+    <option>Bowen University Teaching Hospital, Ogbomoso</option>
+    <option>Oyo State General Hospital, Oyo Town</option>
+    <option>Ring Road Specialist Hospital, Ibadan</option>
+    <option>University College Hospital (UCH), Ibadan</option>
+    <option>Ilorin General Hospital, Ilorin</option>
+    <option>University of Ilorin Teaching Hospital (UITH), Ilorin</option>
+    <option>FOMWAN Clinic, Ilorin</option>
+    <option>Ogbomoso Central Hospital</option>
+    <option>Federal Medical Centre, Oyo</option>
+  </select>
+
+  <div class="row">
+    <button class="btn" onclick="confirmHospital()">Continue</button>
+    <button class="btn" style="background:#6b7280" onclick="goBackToLogin()">Back</button>
+  </div>
+</section>
+
+<!-- ========== APP VIEW (SIDEBAR + TOPBAR + CONTENT) ========== -->
+<section id="appView" class="app hidden">
+  <!-- Sidebar -->
+  <aside id="sidebar" class="sidebar">
+    <div class="brand">
+      <img src="https://i.imgur.com/HdwHHjr.png" alt="Diamon">
+      <h1>Diamon</h1>
     </div>
-  </div>
-
-  <!-- HOSPITAL SELECTION -->
-  <div class="hospital-selection hidden" id="hospitalPage">
-    <img src="https://i.imgur.com/HdwHHjr.png" alt="Diamon Logo">
-    <h2>🏥 Partner Hospitals</h2>
-    <p>Please select your preferred hospital below. You’ll be matched with a doctor in your area.</p>
-
-    <select id="hospitalSelect">
-      <option value="">Select Hospital</option>
-      <option>LAUTECH Teaching Hospital, Ogbomoso</option>
-      <option>Bowen University Teaching Hospital, Ogbomoso</option>
-      <option>Oyo State General Hospital, Oyo Town</option>
-      <option>Ring Road Specialist Hospital, Ibadan</option>
-      <option>University College Hospital (UCH), Ibadan</option>
-      <option>Ilorin General Hospital, Ilorin</option>
-      <option>University of Ilorin Teaching Hospital (UITH), Ilorin</option>
-      <option>FOMWAN Clinic, Ilorin</option>
-      <option>Ogbomoso Central Hospital</option>
-      <option>Federal Medical Centre, Oyo</option>
-    </select>
-
-    <button onclick="proceedToDashboard()">Continue</button>
-  </div>
-
-  <!-- DASHBOARD -->
-  <div class="dashboard" id="dashboardPage">
-    <div class="nav-bar">
-      <h2><img src="https://i.imgur.com/HdwHHjr.png" alt="Logo"> Diamon Dashboard</h2>
-      <button onclick="logout()" style="background:#e63946; color:white; border:none; padding:8px 15px; border-radius:6px; cursor:pointer;">Logout</button>
+    <nav class="menu">
+      <a href="#" class="active" data-tab="overview">🏠 Home Dashboard</a>
+      <a href="#" data-tab="calendar">🗓️ Calendar</a>
+      <a href="#" data-tab="patients" id="patientsTab">👥 My Patients</a>
+      <a href="#" data-tab="realtime">⏱️ Real-time</a>
+      <a href="#" data-tab="profile">👤 My Profile</a>
+    </nav>
+    <div class="help">
+      Need help?<br/> Please contact your admin.
+      <div style="margin-top:10px">
+        <button class="btn" style="width:100%;background:#0ea5e9">GET SUPPORT</button>
+      </div>
     </div>
-    <div class="dashboard-content" id="dashboardContent"></div>
-    <div class="footer">Diamon © 2025 | Saving Limbs, Restoring Lives 💙</div>
-  </div>
+  </aside>
 
-  <script>
-    function login() {
-      const email = document.getElementById('email').value.trim().toLowerCase();
-      if (email === "diamonpatient@gmail.com") {
-        document.getElementById('loginPage').classList.add('hidden');
-        document.getElementById('hospitalPage').classList.remove('hidden');
-      } else if (email === "diamondoctor@gmail.com") {
-        showDoctorDashboard();
-      } else {
-        alert("Access denied. Use demo accounts listed below.");
+  <!-- Main -->
+  <main class="main">
+    <div class="topbar">
+      <div class="where" id="whereText">Patient Dashboard</div>
+      <div class="right">
+        <button class="burger" onclick="toggleSidebar()" style="display:none">☰</button>
+        <span class="tag" id="roleTag">Patient</span>
+        <span id="greetText">Welcome</span>
+        <button class="btn" style="padding:8px 12px" onclick="logout()">Logout</button>
+      </div>
+    </div>
+
+    <div class="content" id="contentArea">
+      <!-- content gets injected here -->
+    </div>
+  </main>
+</section>
+
+<script>
+  // ===== Helpers & State =====
+  const views = {
+    login: document.getElementById('loginView'),
+    picker: document.getElementById('pickerView'),
+    app: document.getElementById('appView')
+  };
+  const contentArea = document.getElementById('contentArea');
+  const whereText = document.getElementById('whereText');
+  const roleTag = document.getElementById('roleTag');
+  let CURRENT_ROLE = null; // 'patient' | 'doctor'
+  let CHARTS = {}; // hold chart instances for cleanup
+
+  function show(view){
+    Object.values(views).forEach(v => v.classList.add('hidden'));
+    view.classList.remove('hidden');
+  }
+
+  function handleLogin(){
+    const email = (document.getElementById('email').value || '').trim().toLowerCase();
+    // Doctor accounts: accept both spellings to avoid confusion
+    if(email === 'diamondoctor@gmail.com' || email === 'iamondoctor@gmail.com'){
+      CURRENT_ROLE = 'doctor';
+      roleTag.textContent = 'Doctor';
+      initDoctorApp();
+    } else if (email === 'diamonpatient@gmail.com'){
+      CURRENT_ROLE = 'patient';
+      roleTag.textContent = 'Patient';
+      show(views.picker);
+    } else {
+      alert('Access denied. Use the demo accounts shown.');
+    }
+  }
+
+  function goBackToLogin(){ show(views.login); }
+
+  // ===== Patient: hospital selection → dashboard =====
+  function confirmHospital(){
+    const sel = document.getElementById('hospitalSelect').value;
+    if(!sel){ alert('Please select a hospital.'); return; }
+
+    // Assign a random doctor
+    const doctors = [
+      'Dr. Tunde Olayemi','Dr. Aisha Bello','Dr. John Adebayo','Dr. Grace Ilori','Dr. Musa Abubakar'
+    ];
+    const doc = doctors[Math.floor(Math.random()*doctors.length)];
+    localStorage.setItem('hospital', sel);
+    localStorage.setItem('assignedDoctor', doc);
+
+    initPatientApp();
+  }
+
+  // ===== Layout & Rendering =====
+  function initPatientApp(){
+    show(views.app);
+    whereText.textContent = 'Patient Dashboard';
+    roleTag.textContent = 'Patient';
+    renderPatientOverview();
+    setupNav('patient');
+  }
+
+  function initDoctorApp(){
+    show(views.app);
+    whereText.textContent = 'Doctor Dashboard';
+    roleTag.textContent = 'Doctor';
+    renderDoctorOverview();
+    setupNav('doctor');
+  }
+
+  function setupNav(role){
+    const links = document.querySelectorAll('.menu a');
+    links.forEach(a=>{
+      a.classList.remove('active');
+      a.onclick = (e)=>{
+        e.preventDefault();
+        links.forEach(l=>l.classList.remove('active'));
+        a.classList.add('active');
+        const tab = a.dataset.tab;
+        if(role==='patient'){
+          if(tab==='overview') renderPatientOverview();
+          else if(tab==='calendar') renderCalendar();
+          else if(tab==='patients') renderPatientMyDoctor();
+          else if(tab==='realtime') renderRealtime();
+          else if(tab==='profile') renderProfile(role);
+        }else{
+          if(tab==='overview') renderDoctorOverview();
+          else if(tab==='calendar') renderCalendar();
+          else if(tab==='patients') renderDoctorPatients();
+          else if(tab==='realtime') renderRealtime();
+          else if(tab==='profile') renderProfile(role);
+        }
       }
+    });
+    // hide "My Patients" for patient
+    document.getElementById('patientsTab').style.display = (role==='doctor') ? 'flex' : 'none';
+    // mobile burger
+    if (window.matchMedia("(max-width: 720px)").matches){
+      document.querySelector('.topbar .burger').style.display = 'inline-block';
     }
+  }
 
-    function proceedToDashboard() {
-      const hospital = document.getElementById('hospitalSelect').value;
-      if (!hospital) {
-        alert("Please select a hospital to continue.");
-        return;
-      }
-      localStorage.setItem('selectedHospital', hospital);
+  function toggleSidebar(){
+    document.getElementById('sidebar').classList.toggle('open');
+  }
 
-      const doctors = [
-        "Dr. Tunde Olayemi",
-        "Dr. Aisha Bello",
-        "Dr. John Adebayo",
-        "Dr. Grace Ilori",
-        "Dr. Musa Abubakar"
-      ];
-      const assignedDoctor = doctors[Math.floor(Math.random() * doctors.length)];
-      localStorage.setItem('assignedDoctor', assignedDoctor);
+  function cleanupCharts(){
+    Object.values(CHARTS).forEach(ch=>{ try{ ch.destroy(); }catch{} });
+    CHARTS = {};
+  }
 
-      showPatientDashboard(hospital, assignedDoctor);
-    }
-
-    function showPatientDashboard(hospital, doctor) {
-      document.getElementById('hospitalPage').classList.add('hidden');
-      document.getElementById('dashboardPage').classList.remove('hidden');
-
-      document.getElementById('dashboardContent').innerHTML = `
-        <h2 style="color:#1e3c72;">Welcome, Diamon Patient 👟</h2>
-        <p style="margin-top:10px;">You are connected to <strong>${doctor}</strong> at <strong>${hospital}</strong>.</p>
-        <div class="cards" style="margin-top:2rem;">
-          <div class="card"><h3>🌡️ Foot Temperature</h3><p>Monitored: 33.4°C (Normal)</p></div>
-          <div class="card"><h3>👣 Foot Pressure</h3><p>Balanced load detected</p></div>
-          <div class="card"><h3>💧 Humidity</h3><p>73% - within safe limits</p></div>
-          <div class="card"><h3>🚶 Step Count</h3><p>5060 steps today</p></div>
+  // ===== Views =====
+  function renderPatientOverview(){
+    cleanupCharts();
+    const hospital = localStorage.getItem('hospital') || '—';
+    const doctor = localStorage.getItem('assignedDoctor') || '—';
+    contentArea.innerHTML = `
+      <div class="grid">
+        <div class="card full" style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+          <div>
+            <h3>Connected Hospital</h3>
+            <div class="muted">${hospital}</div>
+          </div>
+          <div>
+            <h3>Assigned Doctor</h3>
+            <div class="muted">${doctor}</div>
+          </div>
         </div>
-      `;
-    }
 
-    function showDoctorDashboard() {
-      document.getElementById('loginPage').classList.add('hidden');
-      document.getElementById('dashboardPage').classList.remove('hidden');
-
-      document.getElementById('dashboardContent').innerHTML = `
-        <h2 style="color:#1e3c72;">Welcome, Dr. Diamon 🩺</h2>
-        <p>Here’s your overview of patient data and insights.</p>
-        <div class="cards" style="margin-top:2rem;">
-          <div class="card"><h3>👥 Active Patients</h3><p>24 Monitored</p></div>
-          <div class="card"><h3>⚠️ Alerts Today</h3><p>2 Possible Ulcer Risks</p></div>
-          <div class="card"><h3>📊 Average Temperature</h3><p>33.8°C</p></div>
-          <div class="card"><h3>📅 Appointments</h3><p>Next follow-up: 8 Nov 2025</p></div>
+        <div class="card wide">
+          <h3>Feet Temperature (°C)</h3>
+          <div class="muted">Daily trend</div>
+          <canvas id="tempChart"></canvas>
         </div>
-      `;
-    }
 
-    function logout() {
-      localStorage.clear();
-      document.querySelectorAll('.hidden').forEach(el => el.classList.remove('hidden'));
-      document.getElementById('dashboardPage').classList.add('hidden');
-      document.getElementById('hospitalPage').classList.add('hidden');
+        <div class="card">
+          <h3>Step Count</h3>
+          <div class="muted">Today</div>
+          <canvas id="stepsChart" height="140"></canvas>
+        </div>
+
+        <div class="card">
+          <h3>Humidity</h3>
+          <div class="muted">% in shoe</div>
+          <canvas id="humChart" height="140"></canvas>
+        </div>
+
+        <div class="card">
+          <h3>Foot Pressure</h3>
+          <div class="muted">Left vs Right</div>
+          <canvas id="pressChart" height="140"></canvas>
+        </div>
+
+        <div class="card full">
+          <h3>Insight Summary</h3>
+          <div class="muted">No risky asymmetry detected. Keep monitoring daily. If temperature Δ > 2.2°C, an alert will be raised.</div>
+        </div>
+      </div>
+    `;
+    makeCharts('patient');
+  }
+
+  function renderDoctorOverview(){
+    cleanupCharts();
+    contentArea.innerHTML = `
+      <div class="grid">
+        <div class="card">
+          <h3>Active Patients</h3>
+          <div class="muted" style="font-size:28px;font-weight:800">24</div>
+        </div>
+        <div class="card">
+          <h3>Alerts Today</h3>
+          <div class="muted" style="font-size:28px;font-weight:800;color:#b91c1c">2</div>
+        </div>
+        <div class="card">
+          <h3>Avg Temperature</h3>
+          <div class="muted" style="font-size:28px;font-weight:800">33.8°C</div>
+        </div>
+        <div class="card">
+          <h3>Appointments</h3>
+          <div class="muted">Next follow-up: 8 Nov 2025</div>
+        </div>
+
+        <div class="card wide">
+          <h3>Population Temperature Trend</h3>
+          <div class="muted">Past 7 days</div>
+          <canvas id="tempChart"></canvas>
+        </div>
+        <div class="card wide">
+          <h3>Risk Flags</h3>
+          <div class="muted">Patients with ΔT > 2.2°C</div>
+          <canvas id="pressChart"></canvas>
+        </div>
+
+        <div class="card full">
+          <h3>Notes</h3>
+          <div class="muted">2 patients require call-back. Consider offloading instructions and clinic visit scheduling.</div>
+        </div>
+      </div>
+    `;
+    makeCharts('doctor');
+  }
+
+  function renderCalendar(){
+    cleanupCharts();
+    whereText.textContent = (CURRENT_ROLE==='doctor'?'Doctor':'Patient')+' – Calendar';
+    contentArea.innerHTML = `
+      <div class="card full">
+        <h3>Calendar</h3>
+        <div class="muted">This is a placeholder. Integrate Google Calendar or custom scheduler later.</div>
+        <div style="margin-top:12px;background:#fff;border:1px dashed #d1d5db;border-radius:10px;padding:20px">No events today.</div>
+      </div>
+    `;
+  }
+
+  function renderPatientMyDoctor(){
+    cleanupCharts();
+    whereText.textContent = 'My Doctor';
+    const hospital = localStorage.getItem('hospital') || '—';
+    const doctor = localStorage.getItem('assignedDoctor') || '—';
+    contentArea.innerHTML = `
+      <div class="card full">
+        <h3>Assigned Care Team</h3>
+        <div class="muted">Doctor: <b>${doctor}</b> • Hospital: <b>${hospital}</b></div>
+        <div style="margin-top:12px;display:flex;gap:16px;flex-wrap:wrap">
+          <button class="btn" style="width:auto">Message Doctor</button>
+          <button class="btn" style="width:auto;background:#0ea5e9">Book Follow-up</button>
+        </div>
+      </div>
+    `;
+  }
+
+  function renderDoctorPatients(){
+    cleanupCharts();
+    whereText.textContent = 'My Patients';
+    contentArea.innerHTML = `
+      <div class="card full">
+        <h3>Patients List</h3>
+        <div class="muted">Quick view (mock data)</div>
+        <div style="margin-top:12px; display:grid; gap:10px">
+          ${['Amina D','Taiwo O','Ngozi C','Hassan A','Peter K'].map(n=>`
+            <div style="display:flex;justify-content:space-between;align-items:center;background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:12px">
+              <span>${n} • ΔT Normal</span>
+              <button class="btn" style="width:auto;padding:8px 12px">View</button>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  }
+
+  function renderRealtime(){
+    cleanupCharts();
+    whereText.textContent = 'Real-time Monitoring';
+    contentArea.innerHTML = `
+      <div class="grid">
+        <div class="card wide">
+          <h3>Live Temperature Stream</h3>
+          <canvas id="tempChart"></canvas>
+        </div>
+        <div class="card">
+          <h3>Humidity</h3>
+          <canvas id="humChart"></canvas>
+        </div>
+        <div class="card">
+          <h3>Steps</h3>
+          <canvas id="stepsChart"></canvas>
+        </div>
+        <div class="card">
+          <h3>Pressure Balance</h3>
+          <canvas id="pressChart"></canvas>
+        </div>
+      </div>
+    `;
+    makeCharts('patient'); // same visuals, simulated
+  }
+
+  function renderProfile(role){
+    cleanupCharts();
+    whereText.textContent = 'My Profile';
+    contentArea.innerHTML = `
+      <div class="card full">
+        <h3>${role==='doctor'?'Doctor':'Patient'} Profile</h3>
+        <div class="muted">Edit details (placeholder)</div>
+        <div style="margin-top:12px;display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
+          <input placeholder="Full name" style="padding:12px;border:1px solid #e5e7eb;border-radius:10px">
+          <input placeholder="Phone number" style="padding:12px;border:1px solid #e5e7eb;border-radius:10px">
+          <input placeholder="Address" style="padding:12px;border:1px solid #e5e7eb;border-radius:10px">
+          <button class="btn" style="grid-column:1/-1;width:auto">Save</button>
+        </div>
+      </div>
+    `;
+  }
+
+  function logout(){ location.reload(); }
+
+  // ===== Charts =====
+  function makeCharts(mode){
+    const labels = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+    const tempEl = document.getElementById('tempChart');
+    if(tempEl){
+      CHARTS.temp = new Chart(tempEl.getContext('2d'), {
+        type:'line',
+        data:{labels, datasets:[{label:'Temperature °C', data:[33.1,33.6,33.4,33.9,33.5,33.7,33.4], tension:.35}]},
+        options:{responsive:true, plugins:{legend:{display:false}}}
+      });
     }
-  </script>
+    const humEl = document.getElementById('humChart');
+    if(humEl){
+      CHARTS.hum = new Chart(humEl, {type:'line',
+        data:{labels, datasets:[{label:'Humidity %', data:[70,69,71,74,73,72,73], tension:.35}]},
+        options:{plugins:{legend:{display:false}}}
+      });
+    }
+    const stepsEl = document.getElementById('stepsChart');
+    if(stepsEl){
+      CHARTS.steps = new Chart(stepsEl,{type:'doughnut',
+        data:{labels:['Steps','Remaining'], datasets:[{data:[5060,10000-5060]}]},
+        options:{cutout:'70%', plugins:{legend:{display:false}}}
+      });
+    }
+    const pressEl = document.getElementById('pressChart');
+    if(pressEl){
+      CHARTS.press = new Chart(pressEl,{type:'bar',
+        data:{labels:['Left','Right'], datasets:[{data:[50,50]}]},
+        options:{plugins:{legend:{display:false}}, scales:{y:{beginAtZero:true,max:100}}}
+      });
+    }
+  }
+
+  // expose sidebar toggle for mobile
+  function toggleSidebar(){ document.getElementById('sidebar').classList.toggle('open'); }
+
+</script>
 </body>
 </html>
