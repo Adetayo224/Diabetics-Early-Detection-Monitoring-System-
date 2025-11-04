@@ -21,6 +21,26 @@
             display: none !important;
         }
 
+/* adjust logo size */
+.logo-img {
+    width: 70px;              /* adjust logo size */
+    height: auto;
+    display: block;
+    margin: 0 auto 10px auto; /* center above text */
+}
+
+.login-header h1 {
+    color: #1e3c72;
+    font-size: 2rem;
+    margin-bottom: 0.3rem;
+}
+
+.login-header p {
+    color: #666;
+    font-size: 1rem;
+}
+
+          
         /* Login View */
         #loginView {
             min-height: 100vh;
@@ -465,9 +485,10 @@
     <div id="loginView">
         <div class="login-container">
             <div class="login-header">
-                <h1>🦶 Diamon</h1>
-                <p>Smart Footwear Platform</p>
-            </div>
+    <img src="https://i.imgur.com/HdwHHjr.png" alt="Diamon Logo" class="logo-img">
+    <h1>Diamon</h1>
+    <p>Smart Footwear Platform</p>
+</div>
             <form onsubmit="handleLogin(); return false;">
                 <div class="form-group">
                     <label>Email Address</label>
@@ -498,9 +519,16 @@
             <select id="hospitalSelect">
                 <option value="">-- Select Hospital --</option>
                 <option value="LAUTECH Teaching Hospital">LAUTECH Teaching Hospital</option>
-                <option value="University College Hospital, Ibadan">UCH, Ibadan</option>
-                <option value="Lagos University Teaching Hospital">LUTH, Lagos</option>
+                <option value="University College Hospital, Ibadan">University College Hospital, Ibadan</option>
+                <option value="Lagos University Teaching Hospital">Lagos University Teaching Hospital, Lagos</option>
                 <option value="National Hospital, Abuja">National Hospital, Abuja</option>
+                <option value="Bowen University Teaching Hospital, Ogbomoso" >Bowen University Teaching Hospital, Ogbomoso</option>
+                <option value="Ring Road Specialist Hospital, Ibadan" >Ring Road Specialist Hospital, Ibadan</option>
+                <option value="Oyo State General Hospital">Oyo State General Hospital</option>
+                <option value="Ilorin General Hospital">Ilorin General Hospital</option>
+                <option value="University of Ilorin Teaching Hospital (UITH)">University of Ilorin Teaching Hospital (UITH)</option>
+                <option value="FOMWAN Clinic, Ilorin">FOMWAN Clinic, Ilorin</option>
+                <option value="Federal Medical Centre, Oyo">Federal Medical Centre, Oyo</option>     
             </select>
             <button class="btn-login" onclick="confirmHospital()">Continue</button>
             <button class="btn-login" style="background: #666; margin-top: 0.5rem;" onclick="goBackToLogin()">Back</button>
@@ -510,8 +538,8 @@
     <!-- Main App -->
     <div id="appView" class="hidden">
         <div class="sidebar">
-            <div class="sidebar-header">
-                <h2>🦶 Diamon</h2>
+            <div class="login-header">
+            <img src="https://i.imgur.com/HdwHHjr.png" alt="Diamon Logo" class="logo-img">
                 <span class="role-badge" id="roleTag">User</span>
             </div>
             <ul class="menu">
