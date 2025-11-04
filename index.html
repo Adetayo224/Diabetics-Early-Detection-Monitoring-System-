@@ -426,31 +426,85 @@
         
         
         /* Contact Section */
-        .contact {
-            background: linear-gradient(135deg, #f8f9fa, #fff);
-            text-align: center;
-        }
+.contact {
+  background: linear-gradient(180deg, #f8faff 0%, #ffffff 100%);
+  text-align: center;
+  padding: 100px 5%;
+}
 
-        .contact-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
+.contact-subtext {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 3rem;
+}
 
-        .contact-item {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
+.contact-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
 
-        .contact-icon {
-            font-size: 2.5rem;
-            color: #e63946;
-            margin-bottom: 1rem;
-        }
+.contact-card {
+  background: white;
+  border-radius: 20px;
+  padding: 2.5rem;
+  width: 320px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  border-top: 4px solid #1e3c72;
+}
 
+.contact-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 35px rgba(30, 60, 114, 0.15);
+  border-top-color: #e63946;
+}
+
+.contact-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #1e3c72;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.contact-card h3 {
+  font-size: 1.3rem;
+  color: #1e3c72;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.contact-card p {
+  color: #444;
+  margin: 0.3rem 0;
+}
+
+.contact-btn {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 0.7rem 1.8rem;
+  border-radius: 25px;
+  background: linear-gradient(135deg, #e63946, #c1121f);
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.contact-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(230, 57, 70, 0.4);
+}
+
+@media (max-width: 768px) {
+  .contact-card {
+    width: 100%;
+    max-width: 90%;
+  }
+}
+
+     
         /* Footer */
         footer {
             background: #1e3c72;
@@ -756,30 +810,39 @@
     </section>
 
     <!-- Contact -->
-    <section class="contact" id="contact">
-        <h2 class="section-title">Get In Touch</h2>
-        <p style="margin-bottom: 2rem; font-size: 1.1rem;">Have questions or want to learn more about Diamon? We'd love to hear from you!</p>
-        <div class="contact-info">
-            <div class="contact-item">
-                <div class="contact-icon">📧</div>
-                <h3>Email</h3>
-                <p>info@diamon.health</p>
-                <p>support@diamon.health</p>
-            </div>
-            <div class="contact-item">
-                <div class="contact-icon">📱</div>
-                <h3>Phone</h3>
-                <p>+234 800 123 4567</p>
-                <p>+234 800 987 6543</p>
-            </div>
-            <div class="contact-item">
-                <div class="contact-icon">📍</div>
-                <h3>Location</h3>
-                <p>LAUTECH,</p>
-                <p>Ogbomoso, Nigeria</p>
-            </div>
-        </div>
-    </section>
+   <section class="contact" id="contact">
+  <h2 class="section-title">Get In Touch</h2>
+  <p class="contact-subtext">
+    Have questions or want to learn more about Diamon? We'd love to hear from you!
+  </p>
+
+  <div class="contact-cards">
+    <div class="contact-card">
+      <div class="contact-icon">📧</div>
+      <h3>Email</h3>
+      <p>info@diamon.health</p>
+      <p>support@diamon.health</p>
+      <a href="mailto:info@diamon.health" class="contact-btn">Send Email</a>
+    </div>
+
+    <div class="contact-card">
+      <div class="contact-icon">📞</div>
+      <h3>Phone</h3>
+      <p>+234 800 123 4567</p>
+      <p>+234 800 987 6543</p>
+      <a href="tel:+2348001234567" class="contact-btn">Call Now</a>
+    </div>
+
+    <div class="contact-card">
+      <div class="contact-icon">📍</div>
+      <h3>Location</h3>
+      <p>LAUTECH,</p>
+      <p>Ogbomoso, Nigeria</p>
+      <a href="https://goo.gl/maps/XXXX" target="_blank" class="contact-btn">View Map</a>
+    </div>
+  </div>
+</section>
+
 
     <!-- Footer -->
     <footer>
