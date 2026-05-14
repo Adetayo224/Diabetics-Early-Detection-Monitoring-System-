@@ -10,7 +10,6 @@
 <style>
 :root {
   --navy: #0a1628;
-  --navy2: #0f2040;
   --blue: #1a56db;
   --blue2: #2563eb;
   --red: #e63946;
@@ -32,209 +31,270 @@
 body{font-family:var(--font);background:var(--navy);color:var(--text);min-height:100vh;overflow-x:hidden}
 .hidden{display:none!important}
 
-/* ── LOGIN ── */
-#loginView{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;
-  background: radial-gradient(ellipse at 20% 50%, rgba(26,86,219,0.15) 0%, transparent 60%),
-              radial-gradient(ellipse at 80% 20%, rgba(230,57,70,0.1) 0%, transparent 50%),
-              var(--navy);}
-.login-box{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:3rem;max-width:420px;width:100%;position:relative;overflow:hidden;}
-.login-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--blue),var(--red));}
-.login-logo{text-align:center;margin-bottom:2.5rem;}
-.login-logo .logo-mark{width:56px;height:56px;background:linear-gradient(135deg,var(--blue),var(--red));border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-size:1.5rem;}
-.login-logo h1{font-size:1.8rem;font-weight:600;letter-spacing:-0.5px;}
-.login-logo p{color:var(--text2);font-size:0.9rem;margin-top:0.3rem;}
-.field{margin-bottom:1.2rem;}
-.field label{display:block;font-size:0.8rem;font-weight:500;color:var(--text2);margin-bottom:0.5rem;text-transform:uppercase;letter-spacing:0.8px;}
-.field input{width:100%;padding:0.85rem 1rem;background:var(--surface2);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:var(--font);font-size:0.95rem;transition:border-color 0.2s;}
-.field input:focus{outline:none;border-color:var(--blue);}
-.btn-primary{width:100%;padding:0.9rem;background:linear-gradient(135deg,var(--blue),var(--blue2));color:white;border:none;border-radius:10px;font-family:var(--font);font-size:1rem;font-weight:600;cursor:pointer;transition:opacity 0.2s,transform 0.1s;margin-top:0.5rem;}
-.btn-primary:hover{opacity:0.9;transform:translateY(-1px);}
-.demo-hint{margin-top:1.5rem;padding:1rem;background:var(--surface2);border-radius:10px;font-size:0.8rem;color:var(--text3);line-height:1.8;}
-.demo-hint code{color:var(--text2);font-family:var(--mono);}
-
-/* ── PICKER ── */
-#pickerView{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;background:var(--navy);}
-.picker-box{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:3rem;max-width:480px;width:100%;}
-.picker-box h2{font-size:1.5rem;font-weight:600;margin-bottom:0.5rem;}
-.picker-box p{color:var(--text2);margin-bottom:2rem;font-size:0.9rem;}
-select{width:100%;padding:0.85rem 1rem;background:var(--surface2);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:var(--font);font-size:0.95rem;margin-bottom:1rem;cursor:pointer;}
-select:focus{outline:none;border-color:var(--blue);}
-.btn-ghost{width:100%;padding:0.85rem;background:transparent;border:1px solid var(--border);border-radius:10px;color:var(--text2);font-family:var(--font);font-size:0.95rem;cursor:pointer;margin-top:0.5rem;}
-.btn-ghost:hover{border-color:var(--text3);color:var(--text);}
+/* ── AUTH ── */
+.auth-view{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;
+  background:radial-gradient(ellipse at 20% 50%,rgba(26,86,219,.15) 0%,transparent 60%),
+             radial-gradient(ellipse at 80% 20%,rgba(230,57,70,.1) 0%,transparent 50%),var(--navy);}
+.auth-box{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:3rem;max-width:440px;width:100%;position:relative;overflow:hidden;}
+.auth-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--blue),var(--red));}
+.auth-logo{text-align:center;margin-bottom:2rem;}
+.auth-logo .logo-mark{width:56px;height:56px;background:linear-gradient(135deg,var(--blue),var(--red));border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-size:1.5rem;}
+.auth-logo h1{font-size:1.8rem;font-weight:600;letter-spacing:-.5px;}
+.auth-logo p{color:var(--text2);font-size:.9rem;margin-top:.3rem;}
+.field{margin-bottom:1.1rem;}
+.field label{display:block;font-size:.78rem;font-weight:500;color:var(--text2);margin-bottom:.45rem;text-transform:uppercase;letter-spacing:.8px;}
+.field input,.field select{width:100%;padding:.82rem 1rem;background:var(--surface2);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:var(--font);font-size:.95rem;transition:border-color .2s;}
+.field input:focus,.field select:focus{outline:none;border-color:var(--blue);}
+.field select option{background:var(--surface2);}
+.field-hint{font-size:.75rem;color:var(--text3);margin-top:.35rem;font-family:var(--mono);}
+.btn-primary{width:100%;padding:.9rem;background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;border:none;border-radius:10px;font-family:var(--font);font-size:1rem;font-weight:600;cursor:pointer;transition:opacity .2s,transform .1s;margin-top:.4rem;}
+.btn-primary:hover{opacity:.9;transform:translateY(-1px);}
+.btn-primary:disabled{opacity:.55;cursor:not-allowed;transform:none;}
+.auth-switch{text-align:center;margin-top:1.4rem;font-size:.875rem;color:var(--text2);}
+.auth-switch a{color:#60a5fa;cursor:pointer;}
+.auth-switch a:hover{text-decoration:underline;}
+.msg-box{border-radius:8px;padding:.75rem 1rem;font-size:.85rem;margin-bottom:1rem;display:none;}
+.msg-error{background:rgba(230,57,70,.1);border:1px solid rgba(230,57,70,.25);color:#f87171;}
+.msg-success{background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.25);color:#34d399;}
+.role-row{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-bottom:1.1rem;}
+.role-card{border:2px solid var(--border);border-radius:12px;padding:.9rem;cursor:pointer;text-align:center;transition:all .15s;background:var(--surface2);}
+.role-card:hover{border-color:var(--blue);}
+.role-card.selected{border-color:var(--blue);background:rgba(26,86,219,.15);}
+.role-card-icon{font-size:1.4rem;margin-bottom:.3rem;}
+.role-card-label{font-size:.85rem;font-weight:600;}
+.role-card-desc{font-size:.7rem;color:var(--text3);margin-top:.15rem;}
 
 /* ── APP SHELL ── */
 #appView{display:flex;min-height:100vh;}
-.sidebar{width:240px;background:var(--surface);border-right:1px solid var(--border);padding:1.5rem 0;position:fixed;height:100vh;display:flex;flex-direction:column;}
+.sidebar{width:240px;background:var(--surface);border-right:1px solid var(--border);padding:1.5rem 0;position:fixed;height:100vh;display:flex;flex-direction:column;z-index:100;}
 .sidebar-brand{padding:0 1.5rem 1.5rem;border-bottom:1px solid var(--border);margin-bottom:1rem;}
-.brand-logo{display:flex;align-items:center;gap:0.7rem;margin-bottom:0.8rem;}
+.brand-logo{display:flex;align-items:center;gap:.7rem;margin-bottom:.8rem;}
 .brand-dot{width:32px;height:32px;background:linear-gradient(135deg,var(--blue),var(--red));border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
-.brand-name{font-size:1.2rem;font-weight:600;letter-spacing:-0.3px;}
-.role-pill{display:inline-block;padding:0.25rem 0.7rem;border-radius:20px;font-size:0.72rem;font-weight:500;background:rgba(26,86,219,0.15);color:#60a5fa;border:1px solid rgba(26,86,219,0.3);}
-.nav{list-style:none;padding:0 0.75rem;flex:1;}
-.nav li a{display:flex;align-items:center;gap:0.75rem;padding:0.75rem 0.85rem;border-radius:10px;color:var(--text2);text-decoration:none;font-size:0.9rem;font-weight:500;transition:all 0.15s;cursor:pointer;}
+.brand-name{font-size:1.2rem;font-weight:600;letter-spacing:-.3px;}
+.role-pill{display:inline-block;padding:.25rem .7rem;border-radius:20px;font-size:.72rem;font-weight:500;background:rgba(26,86,219,.15);color:#60a5fa;border:1px solid rgba(26,86,219,.3);}
+.role-pill.doctor{background:rgba(16,185,129,.15);color:#34d399;border-color:rgba(16,185,129,.3);}
+.nav{list-style:none;padding:0 .75rem;flex:1;}
+.nav li a{display:flex;align-items:center;gap:.75rem;padding:.75rem .85rem;border-radius:10px;color:var(--text2);text-decoration:none;font-size:.9rem;font-weight:500;transition:all .15s;cursor:pointer;}
 .nav li a:hover{background:var(--surface2);color:var(--text);}
-.nav li a.active{background:rgba(26,86,219,0.15);color:#60a5fa;}
+.nav li a.active{background:rgba(26,86,219,.15);color:#60a5fa;}
 .nav li a .nav-icon{font-size:1rem;width:20px;text-align:center;}
 .sidebar-footer{padding:1rem 1.5rem;border-top:1px solid var(--border);}
-.logout-btn{width:100%;padding:0.7rem;background:rgba(230,57,70,0.1);border:1px solid rgba(230,57,70,0.2);border-radius:10px;color:#fca5a5;font-family:var(--font);font-size:0.85rem;font-weight:500;cursor:pointer;transition:all 0.15s;}
-.logout-btn:hover{background:rgba(230,57,70,0.2);}
+.sidebar-user{font-size:.75rem;color:var(--text3);margin-bottom:.7rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.logout-btn{width:100%;padding:.7rem;background:rgba(230,57,70,.1);border:1px solid rgba(230,57,70,.2);border-radius:10px;color:#fca5a5;font-family:var(--font);font-size:.85rem;font-weight:500;cursor:pointer;transition:all .15s;}
+.logout-btn:hover{background:rgba(230,57,70,.2);}
 
 /* ── MAIN ── */
 .main{margin-left:240px;flex:1;padding:2rem;min-height:100vh;}
 .page-header{margin-bottom:2rem;}
-.page-header h1{font-size:1.6rem;font-weight:600;letter-spacing:-0.5px;}
-.page-header p{color:var(--text2);font-size:0.9rem;margin-top:0.3rem;}
+.page-header h1{font-size:1.6rem;font-weight:600;letter-spacing:-.5px;}
+.page-header p{color:var(--text2);font-size:.9rem;margin-top:.3rem;}
 
 /* ── STATUS BAR ── */
-.status-bar{display:flex;align-items:center;gap:1rem;padding:0.85rem 1.2rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:1.5rem;flex-wrap:wrap;}
-.status-dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 6px var(--green);flex-shrink:0;animation:pulse-dot 2s infinite;}
-@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:0.4}}
-.status-label{font-size:0.85rem;color:var(--text2);}
+.status-bar{display:flex;align-items:center;gap:1rem;padding:.85rem 1.2rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:1.5rem;flex-wrap:wrap;}
+.status-dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 6px var(--green);flex-shrink:0;animation:pdot 2s infinite;}
+@keyframes pdot{0%,100%{opacity:1}50%{opacity:.4}}
+.status-label{font-size:.85rem;color:var(--text2);}
 .status-label strong{color:var(--text);}
-.alert-chip{margin-left:auto;padding:0.3rem 0.85rem;border-radius:20px;font-size:0.78rem;font-weight:600;}
-.chip-normal{background:rgba(16,185,129,0.1);color:#34d399;border:1px solid rgba(16,185,129,0.2);}
-.chip-warn{background:rgba(245,158,11,0.1);color:#fbbf24;border:1px solid rgba(245,158,11,0.2);}
-.chip-danger{background:rgba(230,57,70,0.1);color:#f87171;border:1px solid rgba(230,57,70,0.2);animation:pulse-chip 1.5s infinite;}
-@keyframes pulse-chip{0%,100%{opacity:1}50%{opacity:0.5}}
+.alert-chip{margin-left:auto;padding:.3rem .85rem;border-radius:20px;font-size:.78rem;font-weight:600;}
+.chip-normal{background:rgba(16,185,129,.1);color:#34d399;border:1px solid rgba(16,185,129,.2);}
+.chip-warn{background:rgba(245,158,11,.1);color:#fbbf24;border:1px solid rgba(245,158,11,.2);}
+.chip-danger{background:rgba(230,57,70,.1);color:#f87171;border:1px solid rgba(230,57,70,.2);animation:pchip 1.5s infinite;}
+@keyframes pchip{0%,100%{opacity:1}50%{opacity:.5}}
+.live-tag{display:inline-flex;align-items:center;gap:.4rem;font-size:.72rem;font-weight:600;color:var(--green);text-transform:uppercase;letter-spacing:.8px;}
+.live-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pdot 1.5s infinite;}
 
 /* ── GRID ── */
 .grid{display:grid;gap:1.2rem;}
 .g2{grid-template-columns:1fr 1fr;}
 .g3{grid-template-columns:1fr 1fr 1fr;}
-.g1-2{grid-template-columns:1fr 2fr;}
-.span2{grid-column:span 2;}
-.span3{grid-column:1/-1;}
 
-/* ── CARDS ── */
+/* ── CARD ── */
 .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.4rem;}
-.card-title{font-size:0.78rem;font-weight:500;color:var(--text3);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:1rem;}
-.card canvas{display:block;width:100%!important;max-height:220px;}
+.card-title{font-size:.78rem;font-weight:500;color:var(--text3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:1rem;}
+.card canvas{display:block;width:100%!important;}
 
-/* ── STAT TILES ── */
-.stat-tile{background:var(--surface2);border-radius:10px;padding:1rem;display:flex;justify-content:space-between;align-items:center;margin-bottom:0.7rem;}
+/* ── SOLE PANELS ── */
+.sole-panels{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-bottom:1.2rem;}
+.sole-panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
+.sole-panel-head{padding:1rem 1.4rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.75rem;}
+.sole-badge{padding:.28rem .7rem;border-radius:20px;font-size:.74rem;font-weight:600;font-family:var(--mono);}
+.sole-badge.L{background:rgba(96,165,250,.15);color:#60a5fa;border:1px solid rgba(96,165,250,.2);}
+.sole-badge.R{background:rgba(167,139,250,.15);color:#a78bfa;border:1px solid rgba(167,139,250,.2);}
+.sole-panel-title{font-size:.9rem;font-weight:600;}
+.sole-metrics{padding:1.2rem;display:grid;grid-template-columns:1fr 1fr;gap:.75rem;}
+.sole-metric{background:var(--surface2);border-radius:10px;padding:.9rem 1rem;}
+.sm-label{font-size:.7rem;color:var(--text3);text-transform:uppercase;letter-spacing:.6px;margin-bottom:.35rem;}
+.sm-val{font-size:1.5rem;font-weight:600;font-family:var(--mono);}
+.sm-val.cL{color:#60a5fa;}
+.sm-val.cR{color:#a78bfa;}
+.sm-val.heat{color:#f87171;}
+.sm-val.press{color:#34d399;}
+.sm-full{grid-column:1/-1;}
+.press-row{display:flex;align-items:center;gap:.8rem;margin-top:.4rem;}
+.bar-track{flex:1;height:7px;background:var(--surface3);border-radius:4px;overflow:hidden;}
+.bar-fill{height:100%;border-radius:4px;transition:width .5s ease,background .5s ease;}
+.level-tag{font-size:.78rem;font-weight:600;font-family:var(--mono);color:#fbbf24;min-width:60px;}
+
+/* ── COMPARISON ── */
+.cmp-row{display:flex;align-items:center;gap:1rem;padding:.75rem 1rem;background:var(--surface2);border-radius:10px;margin-bottom:.6rem;}
+.cmp-row:last-child{margin-bottom:0;}
+.cmp-label{flex:1;font-size:.85rem;color:var(--text2);}
+.cmp-vals{display:flex;align-items:center;gap:1rem;}
+.cmp-l{color:#60a5fa;font-family:var(--mono);font-size:.88rem;font-weight:500;min-width:68px;text-align:right;}
+.cmp-r{color:#a78bfa;font-family:var(--mono);font-size:.88rem;font-weight:500;min-width:68px;}
+.cmp-sep{color:var(--text3);font-size:.75rem;}
+.diff-tag{font-size:.72rem;font-weight:600;padding:.18rem .5rem;border-radius:4px;}
+.diff-ok{background:rgba(16,185,129,.12);color:#34d399;}
+.diff-warn{background:rgba(245,158,11,.12);color:#fbbf24;}
+.diff-bad{background:rgba(230,57,70,.12);color:#f87171;}
+
+/* ── STAT TILE ── */
+.stat-tile{background:var(--surface2);border-radius:10px;padding:1rem;display:flex;justify-content:space-between;align-items:center;margin-bottom:.7rem;}
 .stat-tile:last-child{margin-bottom:0;}
-.stat-label{font-size:0.85rem;color:var(--text2);}
-.stat-val{font-size:1.4rem;font-weight:600;font-family:var(--mono);}
-.val-blue{color:#60a5fa;}
-.val-red{color:#f87171;}
-.val-green{color:#34d399;}
-.val-amber{color:#fbbf24;}
-
-/* ── PRESSURE GAUGE ── */
-.pressure-wrap{display:flex;flex-direction:column;align-items:center;gap:0.5rem;}
-.pressure-bar-outer{width:100%;height:14px;background:var(--surface2);border-radius:7px;overflow:hidden;}
-.pressure-bar-inner{height:100%;border-radius:7px;transition:width 0.6s ease,background 0.6s ease;}
-.pressure-label-row{display:flex;justify-content:space-between;width:100%;font-size:0.78rem;color:var(--text3);}
-
-/* ── FOOT MAP ── */
-.foot-map{display:flex;gap:1.5rem;justify-content:center;align-items:flex-end;margin-top:0.5rem;}
-.foot{display:flex;flex-direction:column;align-items:center;gap:0.5rem;}
-.foot-title{font-size:0.75rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.6px;}
-.foot-svg-wrap{position:relative;}
-.zone-label{font-size:0.72rem;color:var(--text2);text-align:center;}
+.stat-label{font-size:.85rem;color:var(--text2);}
+.stat-val{font-size:1.35rem;font-weight:600;font-family:var(--mono);}
+.v-blue{color:#60a5fa;}.v-red{color:#f87171;}.v-green{color:#34d399;}.v-amber{color:#fbbf24;}
 
 /* ── AI PANEL ── */
-.ai-panel{border-left:3px solid var(--amber);background:rgba(245,158,11,0.05);border-radius:0 10px 10px 0;padding:1.2rem;margin-top:1rem;}
-.ai-panel.risk-low{border-color:var(--green);background:rgba(16,185,129,0.05);}
-.ai-panel.risk-high{border-color:var(--red);background:rgba(230,57,70,0.05);}
-.ai-risk-badge{font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:0.5rem;}
-.ai-panel p{font-size:0.88rem;line-height:1.65;color:var(--text2);}
+.ai-panel{border-left:3px solid var(--amber);background:rgba(245,158,11,.05);border-radius:0 10px 10px 0;padding:1.1rem;margin-top:.8rem;}
+.ai-panel.risk-low{border-color:var(--green);background:rgba(16,185,129,.05);}
+.ai-panel.risk-high{border-color:var(--red);background:rgba(230,57,70,.05);}
+.ai-risk-badge{font-size:.73rem;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:.45rem;}
+.ai-panel p{font-size:.86rem;line-height:1.65;color:var(--text2);}
 .ai-panel p strong{color:var(--text);}
-
-/* ── LIVE TAG ── */
-.live-tag{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.72rem;font-weight:600;color:var(--green);text-transform:uppercase;letter-spacing:0.8px;}
-.live-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse-dot 1.5s infinite;}
 
 /* ── PATIENTS TABLE ── */
 .pt-table{width:100%;border-collapse:collapse;}
-.pt-table th{text-align:left;font-size:0.75rem;color:var(--text3);font-weight:500;text-transform:uppercase;letter-spacing:0.7px;padding:0.6rem 0.8rem;border-bottom:1px solid var(--border);}
-.pt-table td{padding:0.85rem 0.8rem;font-size:0.88rem;border-bottom:1px solid var(--border);}
+.pt-table th{text-align:left;font-size:.73rem;color:var(--text3);font-weight:500;text-transform:uppercase;letter-spacing:.7px;padding:.6rem .8rem;border-bottom:1px solid var(--border);}
+.pt-table td{padding:.85rem .8rem;font-size:.88rem;border-bottom:1px solid var(--border);}
 .pt-table tr:last-child td{border-bottom:none;}
-.pt-table tr:hover td{background:rgba(255,255,255,0.02);}
+.pt-table tr.clickable{cursor:pointer;}
+.pt-table tr.clickable:hover td{background:rgba(26,86,219,.07);}
 
-/* ── CHAT ── */
-.chat-fab{position:fixed;bottom:28px;right:28px;width:52px;height:52px;background:linear-gradient(135deg,var(--red),var(--red2));border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 20px rgba(230,57,70,0.35);z-index:1000;transition:transform 0.2s,box-shadow 0.2s;font-size:1.4rem;}
-.chat-fab:hover{transform:scale(1.08);box-shadow:0 6px 28px rgba(230,57,70,0.5);}
-.chat-win{position:fixed;bottom:92px;right:28px;width:340px;height:480px;background:var(--surface);border:1px solid var(--border);border-radius:18px;display:none;flex-direction:column;z-index:999;box-shadow:0 20px 60px rgba(0,0,0,0.5);}
-.chat-win.open{display:flex;}
-.chat-head{padding:1rem 1.2rem;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
-.chat-head h4{font-size:0.95rem;font-weight:600;}
-.chat-close{cursor:pointer;color:var(--text3);font-size:1.3rem;line-height:1;}
-.chat-msgs{flex:1;padding:1rem;overflow-y:auto;display:flex;flex-direction:column;gap:0.7rem;}
-.msg{max-width:80%;padding:0.65rem 0.9rem;border-radius:12px;font-size:0.85rem;line-height:1.5;}
-.msg.bot{background:var(--surface2);color:var(--text);align-self:flex-start;}
-.msg.user{background:var(--blue);color:white;align-self:flex-end;}
-.chat-input{padding:0.85rem;border-top:1px solid var(--border);display:flex;gap:0.5rem;}
-.chat-input input{flex:1;padding:0.6rem 0.9rem;background:var(--surface2);border:1px solid var(--border);border-radius:20px;color:var(--text);font-family:var(--font);font-size:0.85rem;}
-.chat-input input:focus{outline:none;border-color:var(--blue);}
-.chat-send{padding:0.6rem 1rem;background:var(--blue);border:none;border-radius:20px;color:white;font-family:var(--font);font-size:0.82rem;cursor:pointer;}
-
-/* ── CALENDAR ── */
-.appt-item{display:flex;justify-content:space-between;align-items:center;padding:1rem;background:var(--surface2);border-radius:10px;margin-bottom:0.7rem;}
+/* ── APPOINTMENTS ── */
+.appt-item{display:flex;justify-content:space-between;align-items:center;padding:1rem;background:var(--surface2);border-radius:10px;margin-bottom:.7rem;}
 .appt-item:last-child{margin-bottom:0;}
-.appt-title{font-size:0.9rem;font-weight:500;}
-.appt-sub{font-size:0.78rem;color:var(--text3);margin-top:0.2rem;}
-.appt-date{font-family:var(--mono);font-size:0.82rem;color:#60a5fa;}
+.appt-title{font-size:.9rem;font-weight:500;}
+.appt-sub{font-size:.78rem;color:var(--text3);margin-top:.2rem;}
+.appt-date{font-family:var(--mono);font-size:.82rem;color:#60a5fa;white-space:nowrap;}
 
 /* ── PROFILE ── */
-.profile-row{display:flex;justify-content:space-between;align-items:center;padding:0.9rem 1rem;background:var(--surface2);border-radius:10px;margin-bottom:0.6rem;font-size:0.88rem;}
+.profile-row{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1rem;background:var(--surface2);border-radius:10px;margin-bottom:.6rem;font-size:.88rem;}
 .profile-key{color:var(--text2);}
 .profile-val{font-weight:500;}
 
+/* ── MISC ── */
+.spinner-wrap{display:flex;align-items:center;justify-content:center;padding:3rem;flex-direction:column;gap:.75rem;color:var(--text2);}
+.spinner{width:28px;height:28px;border:3px solid var(--border);border-top-color:var(--blue);border-radius:50%;animation:spin .7s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.empty-state{text-align:center;padding:2.5rem;color:var(--text3);}
+.empty-icon{font-size:2rem;margin-bottom:.75rem;}
+.pick-prompt{background:rgba(26,86,219,.07);border:1px solid rgba(26,86,219,.15);border-radius:var(--radius);padding:2rem;text-align:center;}
+.pick-prompt p{color:var(--text2);margin-top:.5rem;font-size:.9rem;}
+
+/* ── CHAT ── */
+.chat-fab{position:fixed;bottom:28px;right:28px;width:52px;height:52px;background:linear-gradient(135deg,var(--red),var(--red2));border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 20px rgba(230,57,70,.35);z-index:1000;transition:transform .2s,box-shadow .2s;font-size:1.4rem;}
+.chat-fab:hover{transform:scale(1.08);box-shadow:0 6px 28px rgba(230,57,70,.5);}
+.chat-win{position:fixed;bottom:92px;right:28px;width:340px;height:480px;background:var(--surface);border:1px solid var(--border);border-radius:18px;display:none;flex-direction:column;z-index:999;box-shadow:0 20px 60px rgba(0,0,0,.5);}
+.chat-win.open{display:flex;}
+.chat-head{padding:1rem 1.2rem;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+.chat-head h4{font-size:.95rem;font-weight:600;}
+.chat-close{cursor:pointer;color:var(--text3);font-size:1.3rem;line-height:1;}
+.chat-msgs{flex:1;padding:1rem;overflow-y:auto;display:flex;flex-direction:column;gap:.7rem;}
+.msg{max-width:80%;padding:.65rem .9rem;border-radius:12px;font-size:.85rem;line-height:1.5;}
+.msg.bot{background:var(--surface2);align-self:flex-start;}
+.msg.user{background:var(--blue);color:#fff;align-self:flex-end;}
+.chat-input-row{padding:.85rem;border-top:1px solid var(--border);display:flex;gap:.5rem;}
+.chat-input-row input{flex:1;padding:.6rem .9rem;background:var(--surface2);border:1px solid var(--border);border-radius:20px;color:var(--text);font-family:var(--font);font-size:.85rem;}
+.chat-input-row input:focus{outline:none;border-color:var(--blue);}
+.chat-send{padding:.6rem 1rem;background:var(--blue);border:none;border-radius:20px;color:#fff;font-family:var(--font);font-size:.82rem;cursor:pointer;}
+
+@media(max-width:900px){.sole-panels{grid-template-columns:1fr;}.g3{grid-template-columns:1fr 1fr;}}
 @media(max-width:768px){
   .sidebar{width:100%;height:auto;position:relative;}
   .main{margin-left:0;}
-  .g2,.g3,.g1-2{grid-template-columns:1fr;}
-  .span2{grid-column:span 1;}
+  .g2,.g3{grid-template-columns:1fr;}
   .chat-win{width:calc(100% - 20px);right:10px;}
+  .sole-panels{grid-template-columns:1fr;}
+  .cmp-vals{gap:.5rem;}
 }
 </style>
 </head>
 <body>
 
 <!-- ── LOGIN ── -->
-<div id="loginView">
-  <div class="login-box">
-    <div class="login-logo">
+<div id="loginView" class="auth-view">
+  <div class="auth-box">
+    <div class="auth-logo">
       <div class="logo-mark">👣</div>
       <h1>Diamon</h1>
       <p>Smart Sole Monitoring Platform</p>
     </div>
-    <form onsubmit="handleLogin();return false;">
-      <div class="field"><label>Email Address</label>
-        <input type="email" id="email" placeholder="Enter your email" required></div>
-      <div class="field"><label>Password</label>
-        <input type="password" id="password" placeholder="Enter your password" required></div>
-      <button type="submit" class="btn-primary">Sign In</button>
+    <div class="msg-box msg-error" id="loginErr"></div>
+    <div class="msg-box msg-success" id="loginOk"></div>
+    <form id="loginForm">
+      <div class="field">
+        <label>Email Address</label>
+        <input type="email" id="loginEmail" placeholder="your@email.com" required>
+      </div>
+      <div class="field">
+        <label>Password</label>
+        <input type="password" id="loginPassword" placeholder="Your password" required>
+      </div>
+      <button type="submit" class="btn-primary" id="loginBtn">Sign In</button>
     </form>
-    <div class="demo-hint">
-      <strong>Demo Accounts:</strong><br>
-      Doctor: <code>diamondoctor@gmail.com</code><br>
-      Patient: <code>diamonpatient@gmail.com</code><br>
-      (any password)
-    </div>
+    <div class="auth-switch">No account? <a onclick="showView('register')">Create one</a></div>
   </div>
 </div>
 
-<!-- ── HOSPITAL PICKER ── -->
-<div id="pickerView" class="hidden">
-  <div class="picker-box">
-    <h2>Select Hospital</h2>
-    <p>Choose your treatment facility to continue</p>
-    <select id="hospitalSelect">
-      <option value="">— Select Hospital —</option>
-      <option>LAUTECH Teaching Hospital</option>
-      <option>University College Hospital, Ibadan</option>
-      <option>Lagos University Teaching Hospital</option>
-      <option>National Hospital, Abuja</option>
-      <option>Bowen University Teaching Hospital, Ogbomoso</option>
-      <option>Ring Road Specialist Hospital, Ibadan</option>
-      <option>Oyo State General Hospital</option>
-      <option>University of Ilorin Teaching Hospital (UITH)</option>
-      <option>Federal Medical Centre, Oyo</option>
-    </select>
-    <button class="btn-primary" onclick="confirmHospital()">Continue</button>
-    <button class="btn-ghost" onclick="show(views.login)">Back</button>
+<!-- ── REGISTER ── -->
+<div id="registerView" class="auth-view hidden">
+  <div class="auth-box">
+    <div class="auth-logo">
+      <div class="logo-mark">👣</div>
+      <h1>Create Account</h1>
+      <p>Join the Diamon monitoring platform</p>
+    </div>
+    <div class="msg-box msg-error" id="regErr"></div>
+    <form id="regForm">
+      <div class="field"><label>I am a</label>
+        <div class="role-row">
+          <div class="role-card selected" id="rcPatient" onclick="pickRole('patient')">
+            <div class="role-card-icon">🧑‍⚕️</div>
+            <div class="role-card-label">Patient</div>
+            <div class="role-card-desc">Monitor my soles</div>
+          </div>
+          <div class="role-card" id="rcDoctor" onclick="pickRole('doctor')">
+            <div class="role-card-icon">👨‍⚕️</div>
+            <div class="role-card-label">Doctor</div>
+            <div class="role-card-desc">Manage patients</div>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <label>Full Name</label>
+        <input type="text" id="regName" placeholder="Your full name" required>
+      </div>
+      <div class="field">
+        <label>Email Address</label>
+        <input type="email" id="regEmail" placeholder="your@email.com" required>
+      </div>
+      <div class="field" id="pairField">
+        <label>Sole Pair ID</label>
+        <input type="text" id="regPairId" placeholder="e.g. DM-A3F9K2" maxlength="9">
+        <div class="field-hint">Format: DM-XXXXXX (6 alphanumeric chars)</div>
+      </div>
+      <div class="field">
+        <label>Password</label>
+        <input type="password" id="regPass" placeholder="Minimum 6 characters" required minlength="6">
+      </div>
+      <div class="field">
+        <label>Confirm Password</label>
+        <input type="password" id="regConfirm" placeholder="Repeat password" required>
+      </div>
+      <button type="submit" class="btn-primary" id="regBtn">Create Account</button>
+    </form>
+    <div class="auth-switch">Already have an account? <a onclick="showView('login')">Sign in</a></div>
   </div>
 </div>
 
@@ -256,30 +316,31 @@ select:focus{outline:none;border-color:var(--blue);}
       <li><a data-tab="profile"><span class="nav-icon">👤</span>Profile</a></li>
     </ul>
     <div class="sidebar-footer">
-      <button class="logout-btn" onclick="logout()">Sign Out</button>
+      <div class="sidebar-user" id="sidebarEmail"></div>
+      <button class="logout-btn" onclick="doLogout()">Sign Out</button>
     </div>
   </div>
 
   <div class="main">
     <div class="page-header">
       <h1 id="pageTitle">Dashboard</h1>
-      <p id="pageSubtitle">Loading data...</p>
+      <p id="pageSubtitle">Loading...</p>
     </div>
     <div id="contentArea"></div>
   </div>
 </div>
 
 <!-- ── CHAT FAB ── -->
-<div class="chat-fab" onclick="toggleChat()">🤖</div>
+<div class="chat-fab" id="chatFab" style="display:none" onclick="toggleChat()">🤖</div>
 <div class="chat-win" id="chatWin">
   <div class="chat-head">
     <h4>AI Health Assistant</h4>
     <span class="chat-close" onclick="toggleChat()">×</span>
   </div>
   <div class="chat-msgs" id="chatMsgs">
-    <div class="msg bot">Hi! I'm your Diamon assistant. Ask me about your foot health readings, risk levels, or diabetes care tips.</div>
+    <div class="msg bot">Hi! Ask me about your foot health readings, risk levels, or diabetes care tips.</div>
   </div>
-  <div class="chat-input">
+  <div class="chat-input-row">
     <input type="text" id="chatInput" placeholder="Ask anything..." onkeypress="if(event.key==='Enter')sendMsg()">
     <button class="chat-send" onclick="sendMsg()">Send</button>
   </div>
@@ -289,90 +350,166 @@ select:focus{outline:none;border-color:var(--blue);}
 // ── SUPABASE ──────────────────────────────────────────────────
 const SUPABASE_URL = 'https://leotspylnwfifocyuolj.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_zZXs3hltH0zj6VfMou51Yg_o1GNY2hi';
-const { createClient } = supabase;
-const sb = createClient(SUPABASE_URL, SUPABASE_KEY);
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 // ── STATE ─────────────────────────────────────────────────────
-const views = {
-  login: document.getElementById('loginView'),
-  picker: document.getElementById('pickerView'),
-  app: document.getElementById('appView')
+let currentUser = null, ROLE = null, PAIR_ID = null, VIEWING_PAIR = null;
+let CHARTS = {}, pollInterval = null;
+let LD = {
+  left:  { hallux:[], heel:[], pressure:[], ts:[], latest:null },
+  right: { hallux:[], heel:[], pressure:[], ts:[], latest:null }
 };
-let ROLE = null;
-let CHARTS = {};
-let pollInterval = null;
-let liveData = { left: [], right: [], pressure: [], timestamps: [] };
 
-function show(v){ Object.values(views).forEach(x=>x.classList.add('hidden')); v.classList.remove('hidden'); }
+// ── VIEW ROUTER ───────────────────────────────────────────────
+const VIEWS = { login:'loginView', register:'registerView', app:'appView' };
+function showView(name){
+  Object.values(VIEWS).forEach(id=>document.getElementById(id).classList.add('hidden'));
+  document.getElementById(VIEWS[name]).classList.remove('hidden');
+}
 
-// ── AUTH ──────────────────────────────────────────────────────
-function handleLogin(){
-  const email = document.getElementById('email').value.trim().toLowerCase();
-  if(email === 'diamondoctor@gmail.com'){ ROLE='doctor'; initApp(); }
-  else if(email === 'diamonpatient@gmail.com'){ ROLE='patient'; show(views.picker); }
-  else alert('Please use a demo account.');
+// ── ROLE PICKER ───────────────────────────────────────────────
+let regRole = 'patient';
+function pickRole(r){
+  regRole = r;
+  document.getElementById('rcPatient').classList.toggle('selected', r==='patient');
+  document.getElementById('rcDoctor').classList.toggle('selected', r==='doctor');
+  document.getElementById('pairField').style.display = r==='patient' ? '' : 'none';
 }
-function confirmHospital(){
-  const h = document.getElementById('hospitalSelect').value;
-  if(!h) return alert('Please select a hospital.');
-  const docs = ['Dr. Tunde Olayemi','Dr. Aisha Bello','Dr. John Adebayo','Dr. Grace Ilori'];
-  localStorage.setItem('hospital', h);
-  localStorage.setItem('doctor', docs[Math.floor(Math.random()*docs.length)]);
-  initApp();
+
+// ── SESSION CHECK ─────────────────────────────────────────────
+async function init(){
+  try {
+    const { data:{ session } } = await sb.auth.getSession();
+    if(session?.user){ loginSuccess(session.user); }
+    else { showView('login'); }
+  } catch(e){ showView('login'); }
 }
-function initApp(){
-  show(views.app);
-  document.getElementById('roleTag').textContent = ROLE === 'doctor' ? 'Doctor' : 'Patient';
-  if(ROLE==='doctor') document.getElementById('patientsTab').classList.remove('hidden');
+
+// ── LOGIN ─────────────────────────────────────────────────────
+document.getElementById('loginForm').onsubmit = async function(e){
+  e.preventDefault();
+  const btn = document.getElementById('loginBtn');
+  const err = document.getElementById('loginErr');
+  err.style.display = 'none';
+  btn.disabled = true; btn.textContent = 'Signing in…';
+  try {
+    const { data, error } = await sb.auth.signInWithPassword({
+      email: document.getElementById('loginEmail').value.trim(),
+      password: document.getElementById('loginPassword').value
+    });
+    if(error) throw error;
+    loginSuccess(data.user);
+  } catch(e){
+    err.textContent = e.message || 'Login failed. Check your credentials.';
+    err.style.display = 'block';
+  } finally { btn.disabled=false; btn.textContent='Sign In'; }
+};
+
+// ── REGISTER ──────────────────────────────────────────────────
+document.getElementById('regForm').onsubmit = async function(e){
+  e.preventDefault();
+  const btn = document.getElementById('regBtn');
+  const err = document.getElementById('regErr');
+  err.style.display = 'none';
+
+  const name    = document.getElementById('regName').value.trim();
+  const email   = document.getElementById('regEmail').value.trim();
+  const pairRaw = document.getElementById('regPairId').value.trim().toUpperCase();
+  const pass    = document.getElementById('regPass').value;
+  const confirm = document.getElementById('regConfirm').value;
+
+  if(pass !== confirm){ err.textContent='Passwords do not match.'; err.style.display='block'; return; }
+  if(regRole === 'patient'){
+    if(!pairRaw){ err.textContent='Pair ID is required for patients.'; err.style.display='block'; return; }
+    if(!/^DM-[A-Z0-9]{6}$/.test(pairRaw)){ err.textContent='Invalid Pair ID. Use format DM-XXXXXX (6 uppercase letters/digits).'; err.style.display='block'; return; }
+  }
+
+  btn.disabled=true; btn.textContent='Creating account…';
+  try {
+    const meta = { role: regRole, full_name: name };
+    if(regRole === 'patient') meta.pair_id = pairRaw;
+
+    const { data, error } = await sb.auth.signUp({
+      email, password: pass, options:{ data: meta }
+    });
+    if(error) throw error;
+
+    if(data.user && data.session){
+      loginSuccess(data.user);
+    } else {
+      showView('login');
+      const ok = document.getElementById('loginOk');
+      ok.textContent = 'Account created! Check your email to confirm, then sign in.';
+      ok.style.display = 'block';
+    }
+  } catch(e){
+    err.textContent = e.message || 'Registration failed.';
+    err.style.display = 'block';
+  } finally { btn.disabled=false; btn.textContent='Create Account'; }
+};
+
+// ── AFTER LOGIN ───────────────────────────────────────────────
+function loginSuccess(user){
+  currentUser = user;
+  ROLE      = user.user_metadata?.role || 'patient';
+  PAIR_ID   = user.user_metadata?.pair_id || null;
+  VIEWING_PAIR = PAIR_ID;
+
+  showView('app');
+  document.getElementById('chatFab').style.display = 'flex';
+  const rt = document.getElementById('roleTag');
+  rt.textContent = ROLE === 'doctor' ? 'Doctor' : 'Patient';
+  if(ROLE === 'doctor') rt.classList.add('doctor');
+  if(ROLE === 'doctor') document.getElementById('patientsTab').classList.remove('hidden');
+  document.getElementById('sidebarEmail').textContent = user.email || '';
+
   setupNav();
   renderOverview();
   startPolling();
 }
-function logout(){ clearInterval(pollInterval); Object.values(CHARTS).forEach(c=>{try{c.destroy()}catch(e){}}); location.reload(); }
 
-// ── SUPABASE DATA ─────────────────────────────────────────────
-async function fetchLatest(limit=30){
+async function doLogout(){
+  clearInterval(pollInterval); pollInterval = null;
+  clearCharts();
+  await sb.auth.signOut();
+  currentUser=null; ROLE=null; PAIR_ID=null; VIEWING_PAIR=null;
+  LD = { left:{hallux:[],heel:[],pressure:[],ts:[],latest:null}, right:{hallux:[],heel:[],pressure:[],ts:[],latest:null} };
+  document.getElementById('chatFab').style.display='none';
+  showView('login');
+}
+
+// ── DATA ──────────────────────────────────────────────────────
+async function fetchBothSoles(pairId, limit=30){
+  if(!pairId) return { left:[], right:[] };
   try {
-    const { data, error } = await sb
-      .from('readings')
+    const { data, error } = await sb.from('readings')
       .select('*')
-      .order('timestamp', { ascending: false })
-      .limit(limit);
+      .in('sole_id', [`${pairId}-L`,`${pairId}-R`])
+      .order('timestamp',{ ascending:false })
+      .limit(limit * 2);
     if(error) throw error;
-    return data ? data.reverse() : [];
-  } catch(e){ console.error('Fetch error:', e); return []; }
+    const rows = data || [];
+    return {
+      left:  rows.filter(r=>r.sole_id===`${pairId}-L`).reverse().slice(-limit),
+      right: rows.filter(r=>r.sole_id===`${pairId}-R`).reverse().slice(-limit)
+    };
+  } catch(e){ console.error('Fetch error',e); return { left:[], right:[] }; }
 }
 
 async function refreshData(){
-  const rows = await fetchLatest(30);
-  if(!rows.length) return;
+  if(!VIEWING_PAIR) return;
+  const { left, right } = await fetchBothSoles(VIEWING_PAIR, 30);
 
-  // Separate left and right sole readings
-  const left  = rows.filter(r => r.sole_id && r.sole_id.endsWith('-L'));
-  const right = rows.filter(r => r.sole_id && r.sole_id.endsWith('-R'));
-
-  // Use left for main timeline (or all if no side distinction yet)
-  const src = left.length ? left : rows;
-
-  liveData.timestamps = src.map(r => {
-    const d = new Date(r.timestamp);
-    return d.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit', second:'2-digit'});
-  });
-
-  // Hallux temperature
-  liveData.hallux = src.map(r => r.hallux_temp ?? r.temperature ?? null).filter(v=>v!==null);
-  // Heel temperature
-  liveData.heel   = src.map(r => r.heel_temp ?? null).filter(v=>v!==null);
-  // Pressure
-  liveData.pressure = src.map(r => r.pressure ?? null).filter(v=>v!==null);
-
-  // Latest values
-  const latest = src[src.length - 1];
-  liveData.latestHallux   = latest?.hallux_temp ?? latest?.temperature ?? '--';
-  liveData.latestHeel     = latest?.heel_temp ?? '--';
-  liveData.latestPressure = latest?.pressure ?? '--';
-  liveData.latestPressureLevel = latest?.pressure_level ?? '--';
-
+  function ingest(side, rows){
+    if(!rows.length) return;
+    side.ts       = rows.map(r=>new Date(r.timestamp).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit',second:'2-digit'}));
+    side.hallux   = rows.map(r=>r.hallux_temp  ?? null);
+    side.heel     = rows.map(r=>r.heel_temp    ?? null);
+    side.pressure = rows.map(r=>r.pressure     ?? null);
+    side.latest   = rows[rows.length-1];
+  }
+  ingest(LD.left,  left);
+  ingest(LD.right, right);
   updateUI();
 }
 
@@ -383,366 +520,478 @@ function startPolling(){
 
 // ── UI UPDATE ─────────────────────────────────────────────────
 function updateUI(){
-  // Stat tiles
-  setEl('valHallux',   liveData.latestHallux !== '--' ? liveData.latestHallux.toFixed(2)+'°C' : '--');
-  setEl('valHeel',     liveData.latestHeel   !== '--' ? liveData.latestHeel.toFixed(2)+'°C'   : '--');
-  setEl('valPressure', liveData.latestPressure !== '--' ? liveData.latestPressure+'%' : '--');
-  setEl('valPressureLevel', liveData.latestPressureLevel);
+  const L = LD.left.latest, R = LD.right.latest;
 
-  // Temperature diff
-  if(liveData.latestHallux !== '--' && liveData.latestHeel !== '--'){
-    const diff = Math.abs(liveData.latestHallux - liveData.latestHeel).toFixed(2);
-    setEl('valDiff', diff+'°C');
-    updateAlertChip(parseFloat(diff));
+  // Left sole
+  if(L){
+    setT('lHallux',   fmt(L.hallux_temp));
+    setT('lHeel',     fmt(L.heel_temp));
+    setT('lPressure', fmtP(L.pressure));
+    setT('lLevel',    L.pressure_level || '--');
+    fillBar('lBar',   L.pressure);
   }
-
-  // Pressure bar
-  const pbar = document.getElementById('pressureBarInner');
-  if(pbar && liveData.latestPressure !== '--'){
-    const p = liveData.latestPressure;
-    pbar.style.width = p+'%';
-    pbar.style.background = p < 25 ? 'var(--green)' : p < 60 ? 'var(--blue)' : p < 85 ? 'var(--amber)' : 'var(--red)';
+  // Right sole
+  if(R){
+    setT('rHallux',   fmt(R.hallux_temp));
+    setT('rHeel',     fmt(R.heel_temp));
+    setT('rPressure', fmtP(R.pressure));
+    setT('rLevel',    R.pressure_level || '--');
+    fillBar('rBar',   R.pressure);
   }
-
-  // Update charts
+  // Comparison
+  if(L && R){
+    const hd = Math.abs((L.hallux_temp||0)-(R.hallux_temp||0));
+    const ed = Math.abs((L.heel_temp||0)-(R.heel_temp||0));
+    setT('cmpHL', fmt(L.hallux_temp)); setT('cmpHR', fmt(R.hallux_temp));
+    setT('cmpEL', fmt(L.heel_temp));   setT('cmpER', fmt(R.heel_temp));
+    setDiff('cmpHD', hd); setDiff('cmpED', ed);
+    updateChip(Math.max(hd, ed));
+  }
+  // Risk
+  const risk = calcRisk();
+  setT('valRisk', risk.level);
+  const rv = document.getElementById('valRisk');
+  if(rv) rv.className = 'stat-val '+risk.vClass;
+  const ap = document.getElementById('aiPanel');
+  if(ap){
+    ap.className = 'ai-panel '+risk.panelClass;
+    const badge = document.getElementById('aiBadge');
+    if(badge){ badge.style.color=risk.color; badge.textContent='Risk: '+risk.level; }
+    setT('aiRec', risk.rec);
+  }
   updateCharts();
-
-  // Update page subtitle with last update time
-  setEl('pageSubtitle', 'Last updated: ' + new Date().toLocaleTimeString());
+  setT('pageSubtitle','Last updated: '+new Date().toLocaleTimeString());
 }
 
-function setEl(id, val){ const el=document.getElementById(id); if(el) el.textContent=val; }
-
-function updateAlertChip(diff){
-  const chip = document.getElementById('alertChip');
-  if(!chip) return;
-  if(diff > 2.2){ chip.className='alert-chip chip-danger'; chip.textContent='⚠ High Asymmetry Alert'; }
-  else if(diff > 1.5){ chip.className='alert-chip chip-warn'; chip.textContent='⚡ Caution: Monitor Closely'; }
-  else { chip.className='alert-chip chip-normal'; chip.textContent='✓ Normal Range'; }
+function setT(id,v){ const e=document.getElementById(id); if(e)e.textContent=v; }
+function fmt(v){ return v!=null?parseFloat(v).toFixed(2)+'°C':'--'; }
+function fmtP(v){ return v!=null?parseFloat(v).toFixed(0)+'%':'--'; }
+function fillBar(id,v){
+  const e=document.getElementById(id); if(!e||v==null)return;
+  const p=Math.min(parseFloat(v),100);
+  e.style.width=p+'%';
+  e.style.background=p<25?'var(--green)':p<60?'var(--blue)':p<85?'var(--amber)':'var(--red)';
+}
+function setDiff(id,v){
+  const e=document.getElementById(id); if(!e)return;
+  e.textContent=v.toFixed(2)+'°C';
+  e.className='diff-tag '+(v>2.2?'diff-bad':v>1.5?'diff-warn':'diff-ok');
+}
+function updateChip(v){
+  const c=document.getElementById('alertChip'); if(!c)return;
+  if(v>2.2){c.className='alert-chip chip-danger';c.textContent='⚠ High Asymmetry Alert';}
+  else if(v>1.5){c.className='alert-chip chip-warn';c.textContent='⚡ Caution: Monitor Closely';}
+  else{c.className='alert-chip chip-normal';c.textContent='✓ Normal Range';}
 }
 
-function updateCharts(){
-  const labels = liveData.timestamps;
-  if(CHARTS.temp){
-    CHARTS.temp.data.labels = labels;
-    CHARTS.temp.data.datasets[0].data = liveData.hallux;
-    CHARTS.temp.data.datasets[1].data = liveData.heel;
-    CHARTS.temp.update('none');
-  }
-  if(CHARTS.pressure){
-    CHARTS.pressure.data.labels = labels;
-    CHARTS.pressure.data.datasets[0].data = liveData.pressure;
-    CHARTS.pressure.update('none');
-  }
+// ── RISK ──────────────────────────────────────────────────────
+function calcRisk(){
+  const L=LD.left.latest, R=LD.right.latest;
+  if(!L&&!R) return {level:'Unknown',vClass:'v-amber',color:'#fbbf24',rec:'Waiting for sensor data…',panelClass:''};
+  const hd=(L&&R)?Math.abs((L.hallux_temp||0)-(R.hallux_temp||0)):0;
+  const ed=(L&&R)?Math.abs((L.heel_temp||0)-(R.heel_temp||0)):0;
+  const mx=Math.max(hd,ed);
+  if(mx>2.2) return {level:'High',vClass:'v-red',color:'#f87171',rec:'Significant temperature asymmetry between left and right soles. Contact your doctor immediately — may indicate early inflammation or circulatory issue.',panelClass:'risk-high'};
+  if(mx>1.5) return {level:'Medium',vClass:'v-amber',color:'#fbbf24',rec:'Slight variation observed. Increase monitoring frequency. Avoid prolonged standing and schedule a check-up within 48 hours.',panelClass:''};
+  return {level:'Low',vClass:'v-green',color:'#34d399',rec:'Readings across both soles are stable and symmetrical. Continue daily monitoring and maintain your current routine.',panelClass:'risk-low'};
 }
 
 // ── CHARTS ────────────────────────────────────────────────────
-function makeChart(id, type, datasets, yMin, yMax, yFmt){
-  const el = document.getElementById(id);
-  if(!el) return;
-  if(CHARTS[id]) CHARTS[id].destroy();
-  CHARTS[id] = new Chart(el.getContext('2d'), {
-    type,
-    data: { labels: liveData.timestamps, datasets },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      animation: { duration: 0 },
-      plugins: { legend: { display: datasets.length > 1, labels: { color:'#9ca3af', font:{family:'DM Sans',size:11}, boxWidth:12, padding:16 } } },
-      scales: {
-        x: { ticks:{ color:'#6b7280', font:{size:10}, maxTicksLimit:6, maxRotation:0 }, grid:{ color:'rgba(255,255,255,0.04)' } },
-        y: { min:yMin, max:yMax, ticks:{ color:'#6b7280', font:{size:10}, callback: v => yFmt ? yFmt(v) : v }, grid:{ color:'rgba(255,255,255,0.04)' } }
+function grad(ctx,r,g,b,h){
+  const gr=ctx.createLinearGradient(0,0,0,h||220);
+  gr.addColorStop(0,`rgba(${r},${g},${b},.22)`);
+  gr.addColorStop(1,`rgba(${r},${g},${b},0)`);
+  return gr;
+}
+function buildTempChart(){
+  const el=document.getElementById('chartTemp'); if(!el)return;
+  if(CHARTS.temp)CHARTS.temp.destroy();
+  CHARTS.temp=new Chart(el.getContext('2d'),{
+    type:'line',
+    data:{
+      labels: LD.left.ts.length?LD.left.ts:LD.right.ts,
+      datasets:[
+        {label:'L-Hallux',data:LD.left.hallux, borderColor:'#60a5fa',backgroundColor:c=>grad(c.chart.ctx,96,165,250),tension:.4,fill:true,borderWidth:2,pointRadius:0},
+        {label:'L-Heel',  data:LD.left.heel,   borderColor:'#f87171',backgroundColor:c=>grad(c.chart.ctx,248,113,113),tension:.4,fill:true,borderWidth:2,pointRadius:0},
+        {label:'R-Hallux',data:LD.right.hallux,borderColor:'#a78bfa',backgroundColor:c=>grad(c.chart.ctx,167,139,250),tension:.4,fill:true,borderWidth:2,pointRadius:0,borderDash:[5,3]},
+        {label:'R-Heel',  data:LD.right.heel,  borderColor:'#fb923c',backgroundColor:c=>grad(c.chart.ctx,251,146,60), tension:.4,fill:true,borderWidth:2,pointRadius:0,borderDash:[5,3]},
+      ]
+    },
+    options:{
+      responsive:true,maintainAspectRatio:false,animation:{duration:0},
+      plugins:{legend:{display:true,labels:{color:'#9ca3af',font:{family:'DM Sans',size:11},boxWidth:12,padding:14}}},
+      scales:{
+        x:{ticks:{color:'#6b7280',font:{size:10},maxTicksLimit:6,maxRotation:0},grid:{color:'rgba(255,255,255,.04)'}},
+        y:{ticks:{color:'#6b7280',font:{size:10},callback:v=>v.toFixed(1)+'°C'},grid:{color:'rgba(255,255,255,.04)'}}
       }
     }
   });
 }
-
-function buildCharts(){
-  const blueGrad = ctx => { const g=ctx.createLinearGradient(0,0,0,220); g.addColorStop(0,'rgba(96,165,250,0.25)'); g.addColorStop(1,'rgba(96,165,250,0)'); return g; };
-  const redGrad  = ctx => { const g=ctx.createLinearGradient(0,0,0,220); g.addColorStop(0,'rgba(248,113,113,0.25)'); g.addColorStop(1,'rgba(248,113,113,0)'); return g; };
-  const greenGrad= ctx => { const g=ctx.createLinearGradient(0,0,0,220); g.addColorStop(0,'rgba(52,211,153,0.25)'); g.addColorStop(1,'rgba(52,211,153,0)'); return g; };
-
-  const tempEl = document.getElementById('chartTemp');
-  const pressEl = document.getElementById('chartPressure');
-
-  if(tempEl){
-    if(CHARTS.temp) CHARTS.temp.destroy();
-    CHARTS.temp = new Chart(tempEl.getContext('2d'), {
-      type:'line',
-      data:{ labels: liveData.timestamps, datasets:[
-        { label:'Hallux', data: liveData.hallux, borderColor:'#60a5fa', backgroundColor: ctx=>blueGrad(ctx.chart.ctx), tension:0.4, fill:true, borderWidth:2, pointRadius:0 },
-        { label:'Heel',   data: liveData.heel,   borderColor:'#f87171', backgroundColor: ctx=>redGrad(ctx.chart.ctx),  tension:0.4, fill:true, borderWidth:2, pointRadius:0 },
-      ]},
-      options:{
-        responsive:true, maintainAspectRatio:false, animation:{duration:0},
-        plugins:{ legend:{ display:true, labels:{color:'#9ca3af',font:{family:'DM Sans',size:11},boxWidth:12,padding:16} } },
-        scales:{
-          x:{ ticks:{color:'#6b7280',font:{size:10},maxTicksLimit:6,maxRotation:0}, grid:{color:'rgba(255,255,255,0.04)'} },
-          y:{ ticks:{color:'#6b7280',font:{size:10}, callback: v=>v.toFixed(1)+'°C'}, grid:{color:'rgba(255,255,255,0.04)'} }
-        }
+function buildPressChart(){
+  const el=document.getElementById('chartPressure'); if(!el)return;
+  if(CHARTS.pres)CHARTS.pres.destroy();
+  CHARTS.pres=new Chart(el.getContext('2d'),{
+    type:'line',
+    data:{
+      labels: LD.left.ts.length?LD.left.ts:LD.right.ts,
+      datasets:[
+        {label:'Left',  data:LD.left.pressure, borderColor:'#60a5fa',backgroundColor:c=>grad(c.chart.ctx,96,165,250,180), tension:.3,fill:true,borderWidth:2,pointRadius:0},
+        {label:'Right', data:LD.right.pressure,borderColor:'#a78bfa',backgroundColor:c=>grad(c.chart.ctx,167,139,250,180),tension:.3,fill:true,borderWidth:2,pointRadius:0},
+      ]
+    },
+    options:{
+      responsive:true,maintainAspectRatio:false,animation:{duration:0},
+      plugins:{legend:{display:true,labels:{color:'#9ca3af',font:{family:'DM Sans',size:11},boxWidth:12,padding:14}}},
+      scales:{
+        x:{ticks:{color:'#6b7280',font:{size:10},maxTicksLimit:6,maxRotation:0},grid:{color:'rgba(255,255,255,.04)'}},
+        y:{min:0,max:100,ticks:{color:'#6b7280',font:{size:10},callback:v=>v+'%'},grid:{color:'rgba(255,255,255,.04)'}}
       }
-    });
+    }
+  });
+}
+function updateCharts(){
+  const labels=LD.left.ts.length?LD.left.ts:LD.right.ts;
+  if(CHARTS.temp){
+    CHARTS.temp.data.labels=labels;
+    CHARTS.temp.data.datasets[0].data=LD.left.hallux;
+    CHARTS.temp.data.datasets[1].data=LD.left.heel;
+    CHARTS.temp.data.datasets[2].data=LD.right.hallux;
+    CHARTS.temp.data.datasets[3].data=LD.right.heel;
+    CHARTS.temp.update('none');
   }
-
-  if(pressEl){
-    if(CHARTS.pressure) CHARTS.pressure.destroy();
-    CHARTS.pressure = new Chart(pressEl.getContext('2d'), {
-      type:'line',
-      data:{ labels: liveData.timestamps, datasets:[
-        { label:'Pressure %', data: liveData.pressure, borderColor:'#34d399', backgroundColor: ctx=>greenGrad(ctx.chart.ctx), tension:0.3, fill:true, borderWidth:2, pointRadius:0 }
-      ]},
-      options:{
-        responsive:true, maintainAspectRatio:false, animation:{duration:0},
-        plugins:{ legend:{display:false} },
-        scales:{
-          x:{ ticks:{color:'#6b7280',font:{size:10},maxTicksLimit:6,maxRotation:0}, grid:{color:'rgba(255,255,255,0.04)'} },
-          y:{ min:0, max:100, ticks:{color:'#6b7280',font:{size:10}, callback:v=>v+'%'}, grid:{color:'rgba(255,255,255,0.04)'} }
-        }
-      }
-    });
+  if(CHARTS.pres){
+    CHARTS.pres.data.labels=labels;
+    CHARTS.pres.data.datasets[0].data=LD.left.pressure;
+    CHARTS.pres.data.datasets[1].data=LD.right.pressure;
+    CHARTS.pres.update('none');
   }
 }
-
-// ── RISK ASSESSMENT ───────────────────────────────────────────
-function getRisk(){
-  const h = liveData.latestHallux, e = liveData.latestHeel;
-  if(h === '--' || e === '--') return { level:'Unknown', color:'val-amber', rec:'Waiting for sensor data...', panelClass:'' };
-  const diff = Math.abs(h - e);
-  if(diff > 2.2) return { level:'High', color:'val-red', rec:'Significant temperature asymmetry detected. Contact your doctor immediately. This may indicate early inflammation or circulatory issue.', panelClass:'risk-high' };
-  if(diff > 1.5) return { level:'Medium', color:'val-amber', rec:'Slight variation observed. Increase monitoring frequency. Avoid prolonged standing and schedule a check-up within 48 hours.', panelClass:'' };
-  return { level:'Low', color:'val-green', rec:'Temperature readings are stable and symmetrical. Continue daily monitoring and maintain your current routine.', panelClass:'risk-low' };
-}
+function clearCharts(){ Object.values(CHARTS).forEach(c=>{try{c.destroy()}catch(e){}}); CHARTS={}; }
 
 // ── NAV ───────────────────────────────────────────────────────
 function setupNav(){
   document.querySelectorAll('#navMenu a').forEach(a=>{
-    a.onclick = e => {
+    a.onclick=e=>{
       e.preventDefault();
       document.querySelectorAll('#navMenu a').forEach(l=>l.classList.remove('active'));
       a.classList.add('active');
-      const tab = a.dataset.tab;
-      if(tab==='overview') renderOverview();
-      else if(tab==='realtime') renderRealtime();
-      else if(tab==='patients') renderPatients();
-      else if(tab==='calendar') renderCalendar();
-      else if(tab==='profile') renderProfile();
+      clearCharts();
+      const tab=a.dataset.tab;
+      ({overview:renderOverview,realtime:renderRealtime,patients:renderPatients,calendar:renderCalendar,profile:renderProfile})[tab]?.();
     };
   });
 }
 
-// ── RENDER OVERVIEW ───────────────────────────────────────────
-function renderOverview(){
-  clearCharts();
-  const hospital = localStorage.getItem('hospital') || '—';
-  const doctor   = localStorage.getItem('doctor')   || '—';
-  const risk = getRisk();
-  const title = ROLE==='doctor' ? 'Doctor Dashboard' : 'Patient Dashboard';
-  document.getElementById('pageTitle').textContent = title;
-
-  document.getElementById('contentArea').innerHTML = `
-    <div class="status-bar">
-      <div class="status-dot"></div>
-      <span class="status-label"><strong>DM-A3F9K2</strong> &nbsp;·&nbsp; ${ROLE==='doctor' ? 'Patient: Abdullahi' : 'Assigned: '+doctor}</span>
-      <span class="live-tag"><span class="live-dot"></span>Live</span>
-      <span class="alert-chip chip-normal" id="alertChip">✓ Normal Range</span>
-    </div>
-
-    <div class="grid g3">
-      <div class="card">
-        <div class="card-title">Hallux Temperature</div>
-        <div class="stat-tile"><span class="stat-label">Left sole</span><span class="stat-val val-blue" id="valHallux">--</span></div>
-        <div class="stat-tile"><span class="stat-label">Asymmetry (Hallux−Heel)</span><span class="stat-val val-amber" id="valDiff">--</span></div>
+// ── SOLE PANELS HTML ──────────────────────────────────────────
+function solePanels(pid, big=false){
+  const sz = big ? '2.2rem' : '1.5rem';
+  return `
+  <div class="sole-panels">
+    <div class="sole-panel">
+      <div class="sole-panel-head">
+        <span class="sole-badge L">${pid}-L</span>
+        <span class="sole-panel-title">Left Sole</span>
       </div>
-      <div class="card">
-        <div class="card-title">Heel Temperature</div>
-        <div class="stat-tile"><span class="stat-label">Left sole</span><span class="stat-val val-red" id="valHeel">--</span></div>
-        <div class="stat-tile"><span class="stat-label">Risk Level</span><span class="stat-val ${risk.color}" id="valRisk">${risk.level}</span></div>
-      </div>
-      <div class="card">
-        <div class="card-title">Foot Pressure</div>
-        <div class="stat-tile"><span class="stat-label">Current load</span><span class="stat-val val-green" id="valPressure">--</span></div>
-        <div class="stat-tile"><span class="stat-label">Level</span><span class="stat-val val-green" id="valPressureLevel">--</span></div>
-        <div style="margin-top:0.8rem;">
-          <div class="pressure-label-row"><span>0%</span><span>50%</span><span>100%</span></div>
-          <div class="pressure-bar-outer" style="margin-top:0.3rem;">
-            <div class="pressure-bar-inner" id="pressureBarInner" style="width:0%;background:var(--green);"></div>
+      <div class="sole-metrics">
+        <div class="sole-metric">
+          <div class="sm-label">Hallux Temp</div>
+          <div class="sm-val cL" id="lHallux" style="font-size:${sz}">--</div>
+        </div>
+        <div class="sole-metric">
+          <div class="sm-label">Heel Temp</div>
+          <div class="sm-val heat" id="lHeel" style="font-size:${sz}">--</div>
+        </div>
+        <div class="sole-metric sm-full">
+          <div class="sm-label">Pressure Load</div>
+          <div class="press-row">
+            <div class="sm-val press" id="lPressure" style="font-size:${sz};min-width:52px">--</div>
+            <div class="bar-track"><div class="bar-fill" id="lBar" style="width:0%;background:var(--green)"></div></div>
+            <div class="level-tag" id="lLevel">--</div>
           </div>
         </div>
       </div>
     </div>
+    <div class="sole-panel">
+      <div class="sole-panel-head">
+        <span class="sole-badge R">${pid}-R</span>
+        <span class="sole-panel-title">Right Sole</span>
+      </div>
+      <div class="sole-metrics">
+        <div class="sole-metric">
+          <div class="sm-label">Hallux Temp</div>
+          <div class="sm-val cR" id="rHallux" style="font-size:${sz}">--</div>
+        </div>
+        <div class="sole-metric">
+          <div class="sm-label">Heel Temp</div>
+          <div class="sm-val heat" id="rHeel" style="font-size:${sz}">--</div>
+        </div>
+        <div class="sole-metric sm-full">
+          <div class="sm-label">Pressure Load</div>
+          <div class="press-row">
+            <div class="sm-val press" id="rPressure" style="font-size:${sz};min-width:52px">--</div>
+            <div class="bar-track"><div class="bar-fill" id="rBar" style="width:0%;background:var(--green)"></div></div>
+            <div class="level-tag" id="rLevel">--</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
 
-    <div class="grid g2" style="margin-top:1.2rem;">
-      <div class="card" style="grid-column:1/-1;">
-        <div class="card-title">Temperature Trend — Hallux & Heel</div>
-        <canvas id="chartTemp" style="max-height:200px;"></canvas>
+// ── RENDER OVERVIEW ───────────────────────────────────────────
+function renderOverview(){
+  document.getElementById('pageTitle').textContent = ROLE==='doctor' ? 'Doctor Dashboard' : 'Patient Dashboard';
+
+  if(ROLE==='doctor' && !VIEWING_PAIR){
+    document.getElementById('pageSubtitle').textContent = 'No patient selected';
+    document.getElementById('contentArea').innerHTML=`
+      <div class="pick-prompt">
+        <div style="font-size:2rem">👥</div>
+        <p>Go to <strong>Patients</strong> in the sidebar and click a patient to view their live sole data.</p>
+      </div>`;
+    return;
+  }
+  if(ROLE==='patient' && !PAIR_ID){
+    document.getElementById('pageSubtitle').textContent = 'No device paired';
+    document.getElementById('contentArea').innerHTML=`
+      <div class="pick-prompt">
+        <div style="font-size:2rem">🔌</div>
+        <p>No Sole Pair ID found on your account. Please contact support or re-register with your device Pair ID.</p>
+      </div>`;
+    return;
+  }
+
+  const pid=VIEWING_PAIR, risk=calcRisk();
+  document.getElementById('contentArea').innerHTML=`
+    <div class="status-bar">
+      <div class="status-dot"></div>
+      <span class="status-label"><strong>${pid}</strong> &nbsp;·&nbsp; ${ROLE==='doctor'?'Viewing patient':'Both soles'}</span>
+      <span class="live-tag"><span class="live-dot"></span>Live</span>
+      <span class="alert-chip chip-normal" id="alertChip">✓ Normal Range</span>
+    </div>
+
+    ${solePanels(pid)}
+
+    <div class="card" style="margin-bottom:1.2rem">
+      <div class="card-title">Left vs Right Comparison</div>
+      <div class="cmp-row">
+        <span class="cmp-label">Hallux Temperature</span>
+        <div class="cmp-vals">
+          <span class="cmp-l" id="cmpHL">--</span>
+          <span class="cmp-sep">vs</span>
+          <span class="cmp-r" id="cmpHR">--</span>
+          <span class="diff-tag diff-ok" id="cmpHD">--</span>
+        </div>
+      </div>
+      <div class="cmp-row">
+        <span class="cmp-label">Heel Temperature</span>
+        <div class="cmp-vals">
+          <span class="cmp-l" id="cmpEL">--</span>
+          <span class="cmp-sep">vs</span>
+          <span class="cmp-r" id="cmpER">--</span>
+          <span class="diff-tag diff-ok" id="cmpED">--</span>
+        </div>
       </div>
     </div>
 
-    <div class="grid g2" style="margin-top:1.2rem;">
+    <div class="card" style="margin-bottom:1.2rem">
+      <div class="card-title">Temperature Trend — L-Hallux · L-Heel · R-Hallux · R-Heel</div>
+      <canvas id="chartTemp" style="max-height:220px"></canvas>
+    </div>
+
+    <div class="grid g2">
       <div class="card">
-        <div class="card-title">Pressure Load Over Time</div>
-        <canvas id="chartPressure" style="max-height:180px;"></canvas>
+        <div class="card-title">Pressure Load — Left & Right</div>
+        <canvas id="chartPressure" style="max-height:180px"></canvas>
       </div>
       <div class="card">
         <div class="card-title">AI Risk Assessment</div>
-        <div class="ai-panel ${risk.panelClass}">
-          <div class="ai-risk-badge" style="color:${risk.level==='High'?'#f87171':risk.level==='Low'?'#34d399':'#fbbf24'}">
-            Risk: ${risk.level}
-          </div>
-          <p><strong>Recommendation:</strong><br>${risk.rec}</p>
-          <p style="margin-top:0.8rem;font-size:0.78rem;color:var(--text3);">
-            The system monitors hallux-to-heel temperature differential and pressure load to detect early ulceration patterns. Alert threshold: 2.2°C asymmetry sustained over time.
+        <div class="stat-tile">
+          <span class="stat-label">Current Risk Level</span>
+          <span class="stat-val ${risk.vClass}" id="valRisk">${risk.level}</span>
+        </div>
+        <div class="ai-panel ${risk.panelClass}" id="aiPanel">
+          <div class="ai-risk-badge" id="aiBadge" style="color:${risk.color}">Risk: ${risk.level}</div>
+          <p><strong>Recommendation:</strong><br><span id="aiRec">${risk.rec}</span></p>
+          <p style="margin-top:.7rem;font-size:.76rem;color:var(--text3)">
+            Monitors left–right temperature asymmetry. Alert threshold: 2.2°C differential between soles sustained over time.
           </p>
         </div>
       </div>
     </div>`;
 
-  setTimeout(()=>{ buildCharts(); updateUI(); }, 80);
+  setTimeout(()=>{ buildTempChart(); buildPressChart(); updateUI(); }, 80);
 }
 
 // ── RENDER REALTIME ───────────────────────────────────────────
 function renderRealtime(){
-  clearCharts();
-  document.getElementById('pageTitle').textContent = 'Live Monitor';
-  document.getElementById('contentArea').innerHTML = `
+  const pid=VIEWING_PAIR||PAIR_ID||'—';
+  document.getElementById('pageTitle').textContent='Live Monitor';
+  document.getElementById('contentArea').innerHTML=`
     <div class="status-bar">
       <div class="status-dot"></div>
-      <span class="status-label"><strong>DM-A3F9K2-L</strong> streaming live</span>
-      <span class="live-tag"><span class="live-dot"></span>Live · 2s interval</span>
+      <span class="status-label"><strong>${pid}</strong> streaming live</span>
+      <span class="live-tag"><span class="live-dot"></span>Live · 3s</span>
       <span class="alert-chip chip-normal" id="alertChip">✓ Normal</span>
     </div>
-    <div class="grid g3">
-      <div class="card">
-        <div class="card-title">Hallux</div>
-        <div style="font-size:2rem;font-weight:600;font-family:var(--mono);color:#60a5fa;" id="valHallux">--</div>
-      </div>
-      <div class="card">
-        <div class="card-title">Heel</div>
-        <div style="font-size:2rem;font-weight:600;font-family:var(--mono);color:#f87171;" id="valHeel">--</div>
-      </div>
-      <div class="card">
-        <div class="card-title">Pressure</div>
-        <div style="font-size:2rem;font-weight:600;font-family:var(--mono);color:#34d399;" id="valPressure">--</div>
-        <div style="font-size:0.82rem;color:var(--text3);margin-top:0.4rem;" id="valPressureLevel">--</div>
-        <div style="margin-top:0.8rem;">
-          <div class="pressure-bar-outer">
-            <div class="pressure-bar-inner" id="pressureBarInner" style="width:0%;background:var(--green);"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="card" style="margin-top:1.2rem;">
+    ${solePanels(pid, true)}
+    <div class="card" style="margin-bottom:1.2rem">
       <div class="card-title">Live Temperature Stream</div>
-      <canvas id="chartTemp" style="max-height:220px;"></canvas>
+      <canvas id="chartTemp" style="max-height:220px"></canvas>
     </div>
-    <div class="card" style="margin-top:1.2rem;">
+    <div class="card">
       <div class="card-title">Live Pressure Stream</div>
-      <canvas id="chartPressure" style="max-height:180px;"></canvas>
+      <canvas id="chartPressure" style="max-height:180px"></canvas>
     </div>`;
-  setTimeout(()=>{ buildCharts(); updateUI(); }, 80);
+  setTimeout(()=>{ buildTempChart(); buildPressChart(); updateUI(); }, 80);
 }
 
-// ── RENDER PATIENTS ───────────────────────────────────────────
-function renderPatients(){
+// ── RENDER PATIENTS (doctor only) ─────────────────────────────
+async function renderPatients(){
+  document.getElementById('pageTitle').textContent='Patients';
+  document.getElementById('pageSubtitle').textContent='Loading…';
+  document.getElementById('contentArea').innerHTML=`<div class="spinner-wrap"><div class="spinner"></div><span>Fetching readings…</span></div>`;
+
+  try {
+    const { data, error } = await sb.from('readings')
+      .select('sole_id,hallux_temp,heel_temp,pressure,pressure_level,timestamp')
+      .order('timestamp',{ascending:false})
+      .limit(600);
+    if(error) throw error;
+
+    const map={};
+    (data||[]).forEach(r=>{
+      const pid=r.sole_id.replace(/-[LR]$/,'');
+      if(!map[pid]) map[pid]={pid,lastTs:r.timestamp,rows:[]};
+      map[pid].rows.push(r);
+    });
+    const patients=Object.values(map);
+    document.getElementById('pageSubtitle').textContent=`${patients.length} patient pair(s)`;
+
+    if(!patients.length){
+      document.getElementById('contentArea').innerHTML=`<div class="card"><div class="empty-state"><div class="empty-icon">📭</div><p>No readings found.</p></div></div>`;
+      return;
+    }
+
+    const rows=patients.map(p=>{
+      const lR=p.rows.find(r=>r.sole_id.endsWith('-L'));
+      const rR=p.rows.find(r=>r.sole_id.endsWith('-R'));
+      const diff=(lR&&rR)?Math.abs((lR.hallux_temp||0)-(rR.hallux_temp||0)):null;
+      const rc=diff===null?'chip-normal':diff>2.2?'chip-danger':diff>1.5?'chip-warn':'chip-normal';
+      const rl=diff===null?'● No pair':diff>2.2?'⚠ Alert':diff>1.5?'⚡ Monitor':'✓ Stable';
+      const last=new Date(p.lastTs).toLocaleString();
+      const ht=lR?.hallux_temp!=null?parseFloat(lR.hallux_temp).toFixed(1)+'°C':'--';
+      const pr=lR?.pressure!=null?parseFloat(lR.pressure).toFixed(0)+'%':'--';
+      return `<tr class="clickable" onclick="viewPatient('${p.pid}')">
+        <td><strong style="font-family:var(--mono)">${p.pid}</strong></td>
+        <td style="color:var(--text2);font-size:.82rem">${last}</td>
+        <td style="font-family:var(--mono)">${ht}</td>
+        <td style="font-family:var(--mono)">${pr}</td>
+        <td><span class="alert-chip ${rc}">${rl}</span></td>
+      </tr>`;
+    }).join('');
+
+    document.getElementById('contentArea').innerHTML=`
+      <div class="card">
+        <div class="card-title">Active Patients — click a row to view live data</div>
+        <table class="pt-table">
+          <thead><tr><th>Pair ID</th><th>Last Reading</th><th>Hallux (L)</th><th>Pressure (L)</th><th>Status</th></tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>`;
+  } catch(e){
+    document.getElementById('contentArea').innerHTML=`<div class="card"><div class="empty-state"><div class="empty-icon">⚠️</div><p>Error loading patients: ${e.message}</p></div></div>`;
+  }
+}
+
+function viewPatient(pid){
+  VIEWING_PAIR=pid;
+  refreshData();
+  document.querySelectorAll('#navMenu a').forEach(l=>l.classList.remove('active'));
+  document.querySelector('#navMenu a[data-tab="overview"]').classList.add('active');
   clearCharts();
-  document.getElementById('pageTitle').textContent = 'Patients';
-  const risk = getRisk();
-  document.getElementById('contentArea').innerHTML = `
-    <div class="card">
-      <div class="card-title">Active Patients</div>
-      <table class="pt-table">
-        <thead><tr><th>Patient</th><th>Sole ID</th><th>Last Reading</th><th>Status</th></tr></thead>
-        <tbody>
-          <tr>
-            <td><strong>Abdullahi</strong></td>
-            <td style="font-family:var(--mono);font-size:0.82rem;">DM-A3F9K2-L</td>
-            <td style="color:var(--text2);">Just now</td>
-            <td><span class="alert-chip ${risk.level==='High'?'chip-danger':risk.level==='Medium'?'chip-warn':'chip-normal'}">${risk.level==='High'?'⚠ Alert':risk.level==='Medium'?'⚡ Monitor':'✓ Stable'}</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="card" style="margin-top:1.2rem;">
-      <div class="card-title">Current Readings — Abdullahi</div>
-      <div class="grid g3">
-        <div class="stat-tile"><span class="stat-label">Hallux Temp</span><span class="stat-val val-blue">${liveData.latestHallux!=='--'?liveData.latestHallux.toFixed(2)+'°C':'--'}</span></div>
-        <div class="stat-tile"><span class="stat-label">Heel Temp</span><span class="stat-val val-red">${liveData.latestHeel!=='--'?liveData.latestHeel.toFixed(2)+'°C':'--'}</span></div>
-        <div class="stat-tile"><span class="stat-label">Pressure</span><span class="stat-val val-green">${liveData.latestPressure!=='--'?liveData.latestPressure+'%':'--'}</span></div>
-      </div>
-    </div>`;
+  renderOverview();
 }
 
 // ── RENDER CALENDAR ───────────────────────────────────────────
 function renderCalendar(){
-  clearCharts();
-  document.getElementById('pageTitle').textContent = 'Calendar';
-  const doctor = localStorage.getItem('doctor') || 'Doctor';
-  document.getElementById('contentArea').innerHTML = `
+  document.getElementById('pageTitle').textContent='Calendar';
+  document.getElementById('pageSubtitle').textContent='Upcoming appointments';
+  document.getElementById('contentArea').innerHTML=`
     <div class="card">
       <div class="card-title">Upcoming Appointments</div>
-      <div class="appt-item"><div><div class="appt-title">Follow-up Check-up</div><div class="appt-sub">With ${doctor}</div></div><span class="appt-date">Nov 8, 2025</span></div>
-      <div class="appt-item"><div><div class="appt-title">Foot Examination</div><div class="appt-sub">Routine screening</div></div><span class="appt-date">Nov 15, 2025</span></div>
-      <div class="appt-item"><div><div class="appt-title">Device Calibration</div><div class="appt-sub">Smart sole service check</div></div><span class="appt-date">Nov 22, 2025</span></div>
+      <div class="appt-item"><div><div class="appt-title">Follow-up Check-up</div><div class="appt-sub">Routine monitoring review</div></div><span class="appt-date">May 20, 2026</span></div>
+      <div class="appt-item"><div><div class="appt-title">Foot Examination</div><div class="appt-sub">Full diabetic foot screening</div></div><span class="appt-date">May 27, 2026</span></div>
+      <div class="appt-item"><div><div class="appt-title">Device Calibration</div><div class="appt-sub">Smart sole service check</div></div><span class="appt-date">Jun 3, 2026</span></div>
+      <div class="appt-item"><div><div class="appt-title">Lab Results Review</div><div class="appt-sub">HbA1c & CBC results</div></div><span class="appt-date">Jun 10, 2026</span></div>
     </div>`;
 }
 
 // ── RENDER PROFILE ────────────────────────────────────────────
 function renderProfile(){
-  clearCharts();
-  document.getElementById('pageTitle').textContent = 'Profile';
-  const hospital = localStorage.getItem('hospital') || '—';
-  const doctor   = localStorage.getItem('doctor')   || '—';
+  document.getElementById('pageTitle').textContent='Profile';
+  document.getElementById('pageSubtitle').textContent='Account details';
+  const meta=currentUser?.user_metadata||{};
+  const email=currentUser?.email||'—';
+  const name=meta.full_name||'—';
+  const pid=meta.pair_id||'—';
+
   if(ROLE==='patient'){
-    document.getElementById('contentArea').innerHTML = `
-      <div class="card">
+    document.getElementById('contentArea').innerHTML=`
+      <div class="card" style="max-width:560px">
         <div class="card-title">Patient Profile</div>
-        <div class="profile-row"><span class="profile-key">Full Name</span><span class="profile-val">Abdullahi</span></div>
-        <div class="profile-row"><span class="profile-key">Patient ID</span><span class="profile-val" style="font-family:var(--mono);">DM-2024-001</span></div>
-        <div class="profile-row"><span class="profile-key">Sole Pair ID</span><span class="profile-val" style="font-family:var(--mono);">DM-A3F9K2</span></div>
-        <div class="profile-row"><span class="profile-key">Hospital</span><span class="profile-val">${hospital}</span></div>
-        <div class="profile-row"><span class="profile-key">Assigned Doctor</span><span class="profile-val">${doctor}</span></div>
-        <div class="profile-row"><span class="profile-key">Device Status</span><span class="profile-val" style="color:var(--green);">● Connected</span></div>
+        <div class="profile-row"><span class="profile-key">Full Name</span><span class="profile-val">${name}</span></div>
+        <div class="profile-row"><span class="profile-key">Email</span><span class="profile-val">${email}</span></div>
+        <div class="profile-row"><span class="profile-key">Sole Pair ID</span><span class="profile-val" style="font-family:var(--mono)">${pid}</span></div>
+        <div class="profile-row"><span class="profile-key">Left Sole</span><span class="profile-val" style="font-family:var(--mono);color:#60a5fa">${pid!=='—'?pid+'-L':'—'}</span></div>
+        <div class="profile-row"><span class="profile-key">Right Sole</span><span class="profile-val" style="font-family:var(--mono);color:#a78bfa">${pid!=='—'?pid+'-R':'—'}</span></div>
+        <div class="profile-row"><span class="profile-key">Role</span><span class="profile-val">Patient</span></div>
+        <div class="profile-row"><span class="profile-key">Device Status</span><span class="profile-val" style="color:var(--green)">● Connected</span></div>
       </div>`;
   } else {
-    document.getElementById('contentArea').innerHTML = `
-      <div class="card">
+    document.getElementById('contentArea').innerHTML=`
+      <div class="card" style="max-width:560px">
         <div class="card-title">Doctor Profile</div>
-        <div class="profile-row"><span class="profile-key">Name</span><span class="profile-val">${doctor}</span></div>
+        <div class="profile-row"><span class="profile-key">Full Name</span><span class="profile-val">${name}</span></div>
+        <div class="profile-row"><span class="profile-key">Email</span><span class="profile-val">${email}</span></div>
+        <div class="profile-row"><span class="profile-key">Role</span><span class="profile-val">Doctor</span></div>
         <div class="profile-row"><span class="profile-key">Specialization</span><span class="profile-val">Endocrinology & Diabetes Care</span></div>
-        <div class="profile-row"><span class="profile-key">Hospital</span><span class="profile-val">${hospital}</span></div>
-        <div class="profile-row"><span class="profile-key">Active Patients</span><span class="profile-val">1 (Abdullahi)</span></div>
-        <div class="profile-row"><span class="profile-key">License</span><span class="profile-val" style="font-family:var(--mono);">MD-NG-2024-1234</span></div>
+        <div class="profile-row"><span class="profile-key">Currently Viewing</span><span class="profile-val" style="font-family:var(--mono)">${VIEWING_PAIR||'—'}</span></div>
       </div>`;
   }
-}
-
-// ── CLEAR CHARTS ──────────────────────────────────────────────
-function clearCharts(){
-  Object.values(CHARTS).forEach(c=>{try{c.destroy()}catch(e){}});
-  CHARTS={};
 }
 
 // ── CHAT ──────────────────────────────────────────────────────
 function toggleChat(){ document.getElementById('chatWin').classList.toggle('open'); }
 function sendMsg(){
-  const inp = document.getElementById('chatInput');
-  const msg = inp.value.trim(); if(!msg) return;
+  const inp=document.getElementById('chatInput');
+  const msg=inp.value.trim(); if(!msg)return;
   addMsg(msg,'user'); inp.value='';
-  setTimeout(()=>addMsg(aiReply(msg),'bot'), 800);
+  setTimeout(()=>addMsg(aiReply(msg),'bot'),700);
 }
-function addMsg(text, who){
-  const wrap = document.getElementById('chatMsgs');
-  const d = document.createElement('div'); d.className='msg '+who; d.textContent=text;
-  wrap.appendChild(d); wrap.scrollTop=wrap.scrollHeight;
+function addMsg(text,who){
+  const w=document.getElementById('chatMsgs');
+  const d=document.createElement('div'); d.className='msg '+who; d.textContent=text;
+  w.appendChild(d); w.scrollTop=w.scrollHeight;
 }
 function aiReply(msg){
-  const m = msg.toLowerCase();
-  if(m.includes('temp')) return `Current readings: Hallux ${liveData.latestHallux!=='--'?liveData.latestHallux.toFixed(2)+'°C':'--'}, Heel ${liveData.latestHeel!=='--'?liveData.latestHeel.toFixed(2)+'°C':'--'}. Difference is what we monitor — values over 2.2°C sustained for hours signal early inflammation.`;
-  if(m.includes('pressure')) return `Current pressure: ${liveData.latestPressure!=='--'?liveData.latestPressure+'%':'--'} (${liveData.latestPressureLevel}). The FSR402 sensor detects how weight is distributed. Uneven pressure combined with temperature asymmetry is a strong early ulceration signal.`;
-  if(m.includes('risk')||m.includes('danger')) return `Risk is currently: ${getRisk().level}. ${getRisk().rec}`;
-  if(m.includes('ulcer')) return 'Diabetic foot ulcers develop from undetected inflammation. Our 2-sensor system catches the temperature rise before visible damage occurs, reducing amputation risk significantly.';
-  if(m.includes('hi')||m.includes('hello')) return 'Hello! I can tell you about your current readings, risk level, pressure, or diabetes foot care. What do you need?';
-  return `I can help with temperature readings, pressure data, risk assessment, and foot care advice. Try asking "what is my temperature?" or "what is my risk level?".`;
+  const m=msg.toLowerCase(), L=LD.left.latest, R=LD.right.latest;
+  if(m.includes('temp')||m.includes('temperature'))
+    return `Left — Hallux: ${fmt(L?.hallux_temp)}, Heel: ${fmt(L?.heel_temp)}. Right — Hallux: ${fmt(R?.hallux_temp)}, Heel: ${fmt(R?.heel_temp)}. Asymmetry >2.2°C sustained for hours signals early inflammation.`;
+  if(m.includes('pressure'))
+    return `Left: ${fmtP(L?.pressure)} (${L?.pressure_level||'--'}). Right: ${fmtP(R?.pressure)} (${R?.pressure_level||'--'}). Uneven load combined with temperature asymmetry is a strong early ulceration signal.`;
+  if(m.includes('left'))
+    return `Left sole (${VIEWING_PAIR||PAIR_ID||'?'}-L): Hallux ${fmt(L?.hallux_temp)}, Heel ${fmt(L?.heel_temp)}, Pressure ${fmtP(L?.pressure)}.`;
+  if(m.includes('right'))
+    return `Right sole (${VIEWING_PAIR||PAIR_ID||'?'}-R): Hallux ${fmt(R?.hallux_temp)}, Heel ${fmt(R?.heel_temp)}, Pressure ${fmtP(R?.pressure)}.`;
+  if(m.includes('risk')||m.includes('danger')){ const r=calcRisk(); return `Risk: ${r.level}. ${r.rec}`; }
+  if(m.includes('ulcer')) return 'Diabetic foot ulcers develop from undetected inflammation. Dual-sensor monitoring catches temperature rises before visible damage, reducing amputation risk significantly.';
+  if(m.includes('hi')||m.includes('hello')) return 'Hello! Ask me about left or right sole readings, risk level, pressure, or diabetes foot care.';
+  return 'I can help with temperature, pressure, risk assessment, and foot care. Try "what is my left sole temperature?" or "what is my risk level?"';
 }
+
+// ── START ─────────────────────────────────────────────────────
+init();
 </script>
 </body>
 </html>
