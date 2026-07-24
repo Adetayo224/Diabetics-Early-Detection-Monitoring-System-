@@ -99,11 +99,11 @@ const TEAM = [
   },
 ]
 
-function SectionTitle({ children, subtitle, kicker }) {
+function SectionTitle({ children, subtitle, kicker, kickerClassName = 'text-xs' }) {
   return (
     <div className="text-center max-w-2xl mx-auto mb-14">
       {kicker && (
-        <div className="text-xs font-semibold uppercase tracking-[0.14em] text-[#E63946] mb-3">
+        <div className={`${kickerClassName} font-semibold uppercase tracking-[0.14em] text-[#E63946] mb-3`}>
           {kicker}
         </div>
       )}
@@ -358,17 +358,17 @@ export default function Landing() {
       {/* TEAM */}
       <section id="team" className="py-24 px-6">
         <div className="max-w-6xl mx-auto">
-          <SectionTitle kicker="Team" subtitle="Clinicians and engineers building this together at LAUTECH, Ogbomoso.">
+          <SectionTitle kicker="Team" kickerClassName="text-2xl md:text-3xl" subtitle="Clinicians and engineers building this together at LAUTECH, Ogbomoso.">
             The people behind Diamon
           </SectionTitle>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {TEAM.map((m) => (
               <motion.div
                 key={m.name}
                 {...fade}
-                className="bg-white border border-slate-200 rounded-3xl overflow-hidden hover:shadow-lg transition"
+                className="bg-white border border-slate-200 rounded-2xl overflow-hidden hover:shadow-md transition"
               >
-                <div className="h-80 bg-slate-100 overflow-hidden">
+                <div className="h-56 bg-slate-100 overflow-hidden">
                   <img
                     src={m.img}
                     alt={m.name}
@@ -376,18 +376,18 @@ export default function Landing() {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="p-8">
-                  <h3 className="font-semibold text-slate-900 text-xl md:text-2xl">{m.name}</h3>
-                  <p className="text-[#E63946] text-sm font-semibold mt-1.5">{m.role}</p>
-                  <p className="text-base text-slate-600 leading-relaxed mt-4">{m.bio}</p>
+                <div className="p-5">
+                  <h3 className="font-semibold text-slate-900 text-sm">{m.name}</h3>
+                  <p className="text-[#E63946] text-xs font-semibold mt-0.5">{m.role}</p>
+                  <p className="text-sm text-slate-600 leading-relaxed mt-3">{m.bio}</p>
                   {m.linkedin && (
                     <a
                       href={m.linkedin}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex items-center gap-2 text-slate-700 hover:text-slate-900 text-sm mt-5 font-medium transition"
+                      className="inline-flex items-center gap-1.5 text-slate-700 hover:text-slate-900 text-xs mt-3 font-medium transition"
                     >
-                      <Linkedin size={16} /> LinkedIn
+                      <Linkedin size={13} /> LinkedIn
                     </a>
                   )}
                 </div>
