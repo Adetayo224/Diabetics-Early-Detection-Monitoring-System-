@@ -1,5 +1,6 @@
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import { useAuth } from '../hooks/useAuth.jsx'
 import {
   Footprints,
   Activity,
@@ -108,6 +109,9 @@ function SectionTitle({ children, subtitle }) {
 }
 
 export default function Landing() {
+  const { user, loading } = useAuth()
+  if (!loading && user) return <Navigate to="/app/overview" replace />
+
   return (
     <div className="min-h-screen bg-navy text-white">
       <Navbar />
