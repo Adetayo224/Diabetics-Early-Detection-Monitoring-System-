@@ -347,8 +347,8 @@ export default function Landing() {
                 transition={{ duration: 0.5, delay: (i % 3) * 0.05 }}
                 className="bg-slate-50 border border-slate-200 rounded-2xl p-6"
               >
-                <p className="italic text-slate-200 leading-relaxed mb-4 text-sm">"{t.text}"</p>
-                <p className="text-[#f4a261] font-semibold text-xs">— {t.by}</p>
+                <p className="italic text-black leading-relaxed mb-4 text-sm font-medium">"{t.text}"</p>
+                <p className="text-[#E63946] font-semibold text-xs">— {t.by}</p>
               </motion.div>
             ))}
           </div>
