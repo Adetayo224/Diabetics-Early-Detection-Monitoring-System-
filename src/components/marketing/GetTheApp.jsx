@@ -5,11 +5,11 @@ export function StoreBadge({ store }) {
     return (
       <a
         href="#"
-        className="inline-flex items-center gap-3 bg-black text-white rounded-xl px-4 py-2.5 border border-white/10 hover:border-white/25 transition min-w-[180px]"
+        className="inline-flex items-center gap-3 bg-slate-900 text-white rounded-xl px-4 py-2.5 hover:bg-black transition min-w-[180px]"
         aria-label="Download on the App Store"
       >
         <Apple size={26} strokeWidth={1.5} />
-        <span className="flex flex-col leading-tight">
+        <span className="flex flex-col leading-tight text-left">
           <span className="text-[0.65rem] text-white/70">Download on the</span>
           <span className="text-base font-semibold -mt-0.5">App Store</span>
         </span>
@@ -19,11 +19,11 @@ export function StoreBadge({ store }) {
   return (
     <a
       href="#"
-      className="inline-flex items-center gap-3 bg-black text-white rounded-xl px-4 py-2.5 border border-white/10 hover:border-white/25 transition min-w-[180px]"
+      className="inline-flex items-center gap-3 bg-slate-900 text-white rounded-xl px-4 py-2.5 hover:bg-black transition min-w-[180px]"
       aria-label="Get it on Google Play"
     >
       <Play size={22} strokeWidth={1.5} fill="currentColor" />
-      <span className="flex flex-col leading-tight">
+      <span className="flex flex-col leading-tight text-left">
         <span className="text-[0.65rem] text-white/70">GET IT ON</span>
         <span className="text-base font-semibold -mt-0.5">Google Play</span>
       </span>
@@ -31,11 +31,20 @@ export function StoreBadge({ store }) {
   )
 }
 
-export function GetTheApp({ compact = false, id }) {
+export function GetTheApp({ compact = false, variant = 'dark', id }) {
   if (compact) {
+    const isLight = variant === 'light'
     return (
-      <div className="bg-surface/60 backdrop-blur border border-white/[0.07] rounded-2xl p-5 text-center">
-        <p className="text-sm text-muted mb-3">Get the Diamon app on your phone</p>
+      <div
+        className={`rounded-2xl p-5 text-center ${
+          isLight
+            ? 'bg-slate-50 border border-slate-200'
+            : 'bg-surface/60 backdrop-blur border border-white/[0.07]'
+        }`}
+      >
+        <p className={`text-sm mb-3 ${isLight ? 'text-slate-600' : 'text-muted'}`}>
+          Get the Diamon app on your phone
+        </p>
         <div className="flex flex-wrap gap-2 justify-center">
           <StoreBadge store="apple" />
           <StoreBadge store="google" />
@@ -43,6 +52,17 @@ export function GetTheApp({ compact = false, id }) {
       </div>
     )
   }
+
+  // Full-width block. Two color variants.
+  if (variant === 'light') {
+    return (
+      <div id={id} className="flex flex-wrap gap-3 justify-center">
+        <StoreBadge store="apple" />
+        <StoreBadge store="google" />
+      </div>
+    )
+  }
+
   return (
     <section id={id} className="px-6 py-20 bg-gradient-to-br from-navy via-[#0f1e3a] to-navy">
       <div className="max-w-4xl mx-auto text-center">
