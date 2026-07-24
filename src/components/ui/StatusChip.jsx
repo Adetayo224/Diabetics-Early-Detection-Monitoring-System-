@@ -3,15 +3,15 @@ import { CheckCircle2, AlertTriangle, Zap } from 'lucide-react'
 export function StatusChip({ tone = 'normal', children }) {
   const map = {
     normal: {
-      cls: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
+      cls: 'bg-emerald-50 text-emerald-700 border-emerald-200',
       Icon: CheckCircle2,
     },
     warn: {
-      cls: 'bg-amber-500/10 text-amber-400 border-amber-500/20',
+      cls: 'bg-amber-50 text-amber-700 border-amber-200',
       Icon: Zap,
     },
     danger: {
-      cls: 'bg-red/10 text-red-300 border-red/25 animate-pulse',
+      cls: 'bg-red-50 text-[#E63946] border-red-200 animate-pulse',
       Icon: AlertTriangle,
     },
   }

@@ -9,8 +9,8 @@ import {
   Legend,
 } from 'recharts'
 
-const grid = 'rgba(255,255,255,0.04)'
-const tick = { fill: '#6b7280', fontSize: 10 }
+const grid = 'rgba(15,23,42,0.08)'
+const tick = { fill: '#64748b', fontSize: 10 }
 
 function mergeSeries(left, right) {
   const n = Math.max(left.length, right.length)
@@ -52,14 +52,15 @@ export function PressureChart({ left, right, height = 180 }) {
         />
         <Tooltip
           contentStyle={{
-            background: '#1f2937',
-            border: '1px solid rgba(255,255,255,0.08)',
+            background: '#ffffff',
+            border: '1px solid #e2e8f0',
             borderRadius: 8,
             fontSize: 12,
+            color: '#0f172a',
           }}
-          labelStyle={{ color: '#9ca3af' }}
+          labelStyle={{ color: '#475569' }}
         />
-        <Legend wrapperStyle={{ fontSize: 11, color: '#9ca3af' }} iconType="circle" />
+        <Legend wrapperStyle={{ fontSize: 11, color: '#475569' }} iconType="circle" />
         <Area type="monotone" dataKey="left" name="Left" stroke="#60a5fa" fill="url(#gLeft)" strokeWidth={2} isAnimationActive={false} />
         <Area type="monotone" dataKey="right" name="Right" stroke="#a78bfa" fill="url(#gRight)" strokeWidth={2} isAnimationActive={false} />
       </AreaChart>

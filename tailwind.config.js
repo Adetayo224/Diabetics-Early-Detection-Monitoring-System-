@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        navy: '#0a1628',
+        navy: '#ffffff',
         blue: {
           DEFAULT: '#1565C0',
           500: '#1a56db',
@@ -15,13 +15,13 @@ export default {
           600: '#c1121f',
         },
         surface: {
-          DEFAULT: '#111827',
-          2: '#1f2937',
-          3: '#374151',
+          DEFAULT: '#ffffff',
+          2: '#f1f5f9',
+          3: '#e2e8f0',
         },
         muted: {
-          DEFAULT: '#9ca3af',
-          2: '#6b7280',
+          DEFAULT: '#475569',
+          2: '#64748b',
         },
         accent: {
           green: '#10b981',
@@ -36,7 +36,7 @@ export default {
         card: '14px',
       },
       boxShadow: {
-        card: '0 1px 2px rgba(0,0,0,0.15)',
+        card: '0 1px 2px rgba(15,23,42,0.06)',
       },
     },
   },

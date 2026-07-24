@@ -89,12 +89,12 @@ export default function Patients() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="text-[0.7rem] text-muted-2 uppercase tracking-wider">
-                  <th className="text-left font-medium py-2.5 px-3 border-b border-white/[0.07]">Pair ID</th>
-                  <th className="text-left font-medium py-2.5 px-3 border-b border-white/[0.07]">Last Reading</th>
-                  <th className="text-left font-medium py-2.5 px-3 border-b border-white/[0.07]">Hallux (L)</th>
-                  <th className="text-left font-medium py-2.5 px-3 border-b border-white/[0.07]">Pressure (L)</th>
-                  <th className="text-left font-medium py-2.5 px-3 border-b border-white/[0.07]">Status</th>
-                  <th className="border-b border-white/[0.07]" />
+                  <th className="text-left font-medium py-2.5 px-3 border-b border-slate-200">Pair ID</th>
+                  <th className="text-left font-medium py-2.5 px-3 border-b border-slate-200">Last Reading</th>
+                  <th className="text-left font-medium py-2.5 px-3 border-b border-slate-200">Hallux (L)</th>
+                  <th className="text-left font-medium py-2.5 px-3 border-b border-slate-200">Pressure (L)</th>
+                  <th className="text-left font-medium py-2.5 px-3 border-b border-slate-200">Status</th>
+                  <th className="border-b border-slate-200" />
                 </tr>
               </thead>
               <tbody>
@@ -108,24 +108,24 @@ export default function Patients() {
                     <tr
                       key={p.pid}
                       onClick={() => open(p.pid)}
-                      className="cursor-pointer hover:bg-blue/[0.07] transition"
+                      className="cursor-pointer hover:bg-slate-50 transition"
                     >
-                      <td className="py-3 px-3 border-b border-white/[0.07]">
+                      <td className="py-3 px-3 border-b border-slate-200">
                         <strong className="font-mono">{p.pid}</strong>
                       </td>
-                      <td className="py-3 px-3 border-b border-white/[0.07] text-muted text-xs">
+                      <td className="py-3 px-3 border-b border-slate-200 text-muted text-xs">
                         {new Date(p.lastTs).toLocaleString()}
                       </td>
-                      <td className="py-3 px-3 border-b border-white/[0.07] font-mono">
+                      <td className="py-3 px-3 border-b border-slate-200 font-mono">
                         {lR?.hallux_temp != null ? `${parseFloat(lR.hallux_temp).toFixed(1)}°C` : '--'}
                       </td>
-                      <td className="py-3 px-3 border-b border-white/[0.07] font-mono">
+                      <td className="py-3 px-3 border-b border-slate-200 font-mono">
                         {lR?.pressure != null ? `${parseFloat(lR.pressure).toFixed(0)}%` : '--'}
                       </td>
-                      <td className="py-3 px-3 border-b border-white/[0.07]">
+                      <td className="py-3 px-3 border-b border-slate-200">
                         <StatusChip tone={tone}>{label}</StatusChip>
                       </td>
-                      <td className="py-3 px-3 border-b border-white/[0.07] text-muted-2">
+                      <td className="py-3 px-3 border-b border-slate-200 text-muted-2">
                         <ChevronRight size={16} />
                       </td>
                     </tr>

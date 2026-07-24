@@ -39,7 +39,7 @@ export function GetTheApp({ compact = false, variant = 'dark', id }) {
         className={`rounded-2xl p-5 text-center ${
           isLight
             ? 'bg-slate-50 border border-slate-200'
-            : 'bg-surface/60 backdrop-blur border border-white/[0.07]'
+            : 'bg-surface/60 backdrop-blur border border-slate-200'
         }`}
       >
         <p className={`text-sm mb-3 ${isLight ? 'text-slate-600' : 'text-muted'}`}>

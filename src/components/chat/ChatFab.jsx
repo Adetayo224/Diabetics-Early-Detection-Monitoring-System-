@@ -67,16 +67,16 @@ export function ChatFab() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 12, scale: 0.98 }}
             transition={{ duration: 0.18 }}
-            className="fixed bottom-24 right-7 w-[340px] max-w-[calc(100%-2rem)] h-[480px] bg-surface border border-white/[0.07] rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.5)] flex flex-col z-50"
+            className="fixed bottom-24 right-7 w-[340px] max-w-[calc(100%-2rem)] h-[480px] bg-white border border-slate-200 rounded-2xl shadow-[0_20px_60px_rgba(15,23,42,0.15)] flex flex-col z-50"
           >
-            <div className="px-4 py-3 border-b border-white/[0.07] flex items-center justify-between">
+            <div className="px-4 py-3 border-b border-slate-200 flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <Bot size={16} className="text-red-300" />
-                <h4 className="text-sm font-semibold">AI Health Assistant</h4>
+                <Bot size={16} className="text-[#E63946]" />
+                <h4 className="text-sm font-semibold text-slate-900">AI Health Assistant</h4>
               </div>
               <button
                 onClick={() => setOpen(false)}
-                className="text-muted-2 hover:text-white transition"
+                className="text-muted-2 hover:text-slate-900 transition"
                 aria-label="Close chat"
               >
                 <X size={18} />
@@ -88,25 +88,25 @@ export function ChatFab() {
                   key={i}
                   className={`max-w-[80%] px-3 py-2 rounded-xl text-sm leading-relaxed ${
                     m.who === 'user'
-                      ? 'bg-blue-500 text-white self-end'
-                      : 'bg-surface-2 self-start'
+                      ? 'bg-[#E63946] text-white self-end'
+                      : 'bg-slate-100 text-slate-800 self-start'
                   }`}
                 >
                   {m.text}
                 </div>
               ))}
             </div>
-            <div className="p-3 border-t border-white/[0.07] flex gap-2">
+            <div className="p-3 border-t border-slate-200 flex gap-2">
               <input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && send()}
                 placeholder="Ask anything…"
-                className="flex-1 bg-surface-2 border border-white/[0.07] rounded-full px-4 py-2 text-sm focus:outline-none focus:border-blue-500 transition"
+                className="flex-1 bg-white border border-slate-200 rounded-full px-4 py-2 text-sm text-slate-900 placeholder:text-muted-2 focus:outline-none focus:border-[#E63946] transition"
               />
               <button
                 onClick={send}
-                className="w-9 h-9 rounded-full bg-blue-500 flex items-center justify-center hover:bg-blue-600 transition"
+                className="w-9 h-9 rounded-full bg-[#E63946] flex items-center justify-center hover:bg-[#c1121f] transition"
                 aria-label="Send"
               >
                 <Send size={14} className="text-white" />

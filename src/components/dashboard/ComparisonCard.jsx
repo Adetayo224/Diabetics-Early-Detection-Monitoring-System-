@@ -17,18 +17,18 @@ export function ComparisonCard({ left, right }) {
               : diff > 1.5 ? 'warn'
               : 'ok'
           const toneCls = {
-            ok: 'bg-emerald-500/15 text-emerald-400',
-            warn: 'bg-amber-500/15 text-amber-400',
-            bad: 'bg-red/15 text-red-300',
-            muted: 'bg-white/[0.05] text-muted',
+            ok: 'bg-emerald-100 text-emerald-700',
+            warn: 'bg-amber-100 text-amber-700',
+            bad: 'bg-red-100 text-[#E63946]',
+            muted: 'bg-slate-100 text-muted',
           }[tone]
           return (
-            <div key={label} className="flex items-center gap-4 py-3 px-4 bg-surface-2 rounded-xl">
+            <div key={label} className="flex items-center gap-4 py-3 px-4 bg-slate-50 rounded-xl">
               <span className="flex-1 text-sm text-muted">{label}</span>
               <div className="flex items-center gap-3 text-sm">
-                <span className="font-mono text-blue-400 min-w-[68px] text-right">{fmtTemp(l)}</span>
+                <span className="font-mono text-blue-600 min-w-[68px] text-right">{fmtTemp(l)}</span>
                 <span className="text-muted-2 text-xs">vs</span>
-                <span className="font-mono text-purple-400 min-w-[68px]">{fmtTemp(r)}</span>
+                <span className="font-mono text-purple-600 min-w-[68px]">{fmtTemp(r)}</span>
                 <span className={`text-xs font-semibold px-2 py-0.5 rounded ${toneCls}`}>
                   {diff != null ? `${diff.toFixed(2)}°C` : '--'}
                 </span>

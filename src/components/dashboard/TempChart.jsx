@@ -9,8 +9,8 @@ import {
   Legend,
 } from 'recharts'
 
-const grid = 'rgba(255,255,255,0.04)'
-const tick = { fill: '#6b7280', fontSize: 10 }
+const grid = 'rgba(15,23,42,0.08)'
+const tick = { fill: '#64748b', fontSize: 10 }
 
 function mergeSeries(left, right) {
   const n = Math.max(left.length, right.length)
@@ -48,14 +48,15 @@ export function TempChart({ left, right, height = 220 }) {
         />
         <Tooltip
           contentStyle={{
-            background: '#1f2937',
-            border: '1px solid rgba(255,255,255,0.08)',
+            background: '#ffffff',
+            border: '1px solid #e2e8f0',
             borderRadius: 8,
             fontSize: 12,
+            color: '#0f172a',
           }}
-          labelStyle={{ color: '#9ca3af' }}
+          labelStyle={{ color: '#475569' }}
         />
-        <Legend wrapperStyle={{ fontSize: 11, color: '#9ca3af' }} iconType="circle" />
+        <Legend wrapperStyle={{ fontSize: 11, color: '#475569' }} iconType="circle" />
         <Line type="monotone" dataKey="lHallux" name="L-Hallux" stroke="#60a5fa" dot={false} strokeWidth={2} isAnimationActive={false} />
         <Line type="monotone" dataKey="lHeel" name="L-Heel" stroke="#f87171" dot={false} strokeWidth={2} isAnimationActive={false} />
         <Line type="monotone" dataKey="rHallux" name="R-Hallux" stroke="#a78bfa" dot={false} strokeWidth={2} strokeDasharray="5 3" isAnimationActive={false} />

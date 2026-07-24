@@ -46,10 +46,10 @@ export default function Register() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-5"
+    <div className="min-h-screen flex items-center justify-center p-5 bg-white"
       style={{
-        background:
-          'radial-gradient(ellipse at 20% 50%, rgba(21,101,192,0.18) 0%, transparent 60%), radial-gradient(ellipse at 80% 20%, rgba(230,57,70,0.12) 0%, transparent 50%), #0a1628',
+        backgroundImage:
+          'radial-gradient(circle at 15% 20%, rgba(21,101,192,0.08) 0%, transparent 45%), radial-gradient(circle at 85% 80%, rgba(230,57,70,0.06) 0%, transparent 45%)',
       }}
     >
       <motion.div
@@ -58,12 +58,12 @@ export default function Register() {
         transition={{ duration: 0.4 }}
         className="w-full max-w-md"
       >
-        <div className="bg-surface border border-white/[0.07] rounded-2xl p-8 relative overflow-hidden">
+        <div className="bg-white border border-slate-200 rounded-2xl p-8 relative overflow-hidden shadow-sm">
           <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-blue to-red" />
 
           <div className="flex flex-col items-center mb-6">
-            <Logo size={48} withWordmark={false} />
-            <h1 className="mt-4 text-2xl font-semibold tracking-tight">Create Account</h1>
+            <Logo size={48} withWordmark={false} tone="light" />
+            <h1 className="mt-4 text-2xl font-semibold tracking-tight text-slate-900">Create Account</h1>
             <p className="text-muted text-sm mt-1">Join the Diamon monitoring platform</p>
           </div>
 
@@ -118,7 +118,7 @@ export default function Register() {
             <button
               type="submit"
               disabled={busy}
-              className="w-full flex items-center justify-center gap-2 py-3 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 font-semibold hover:opacity-90 transition disabled:opacity-50"
+              className="w-full flex items-center justify-center gap-2 py-3 rounded-full bg-[#E63946] text-white font-semibold hover:bg-[#c1121f] transition disabled:opacity-50 shadow-sm"
             >
               {busy ? 'Creating account…' : (<>Create Account <ArrowRight size={16} /></>)}
             </button>
@@ -126,7 +126,7 @@ export default function Register() {
 
           <p className="text-center text-sm text-muted mt-6">
             Already have an account?{' '}
-            <Link to="/login" className="text-blue-400 hover:underline">Sign in</Link>
+            <Link to="/login" className="text-[#E63946] hover:underline font-medium">Sign in</Link>
           </p>
         </div>
       </motion.div>
@@ -141,12 +141,12 @@ function RoleCard({ active, onClick, Icon, label, desc }) {
       onClick={onClick}
       className={`text-left p-3 rounded-xl border-2 transition ${
         active
-          ? 'border-blue-500 bg-blue/15'
-          : 'border-white/[0.07] bg-surface-2 hover:border-blue-500/60'
+          ? 'border-[#E63946] bg-red-50'
+          : 'border-slate-200 bg-white hover:border-slate-300'
       }`}
     >
-      <Icon size={20} className={active ? 'text-blue-400' : 'text-muted'} />
-      <div className="mt-2 text-sm font-semibold">{label}</div>
+      <Icon size={20} className={active ? 'text-[#E63946]' : 'text-muted'} />
+      <div className="mt-2 text-sm font-semibold text-slate-900">{label}</div>
       <div className="text-[0.7rem] text-muted-2">{desc}</div>
     </button>
   )
@@ -164,7 +164,7 @@ function Field({ label, icon: Icon, value, onChange, ...rest }) {
           {...rest}
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          className="w-full pl-10 pr-3 py-2.5 bg-surface-2 border border-white/[0.07] rounded-lg text-white placeholder:text-muted-2 focus:outline-none focus:border-blue-500 transition"
+          className="w-full pl-10 pr-3 py-2.5 bg-white border border-slate-200 rounded-lg text-slate-900 placeholder:text-muted-2 focus:outline-none focus:border-blue-500 transition"
         />
       </div>
     </div>

@@ -345,7 +345,7 @@ export default function Landing() {
                 key={i}
                 {...fade}
                 transition={{ duration: 0.5, delay: (i % 3) * 0.05 }}
-                className="bg-white/[0.04] border border-white/[0.08] rounded-2xl p-6"
+                className="bg-slate-50 border border-slate-200 rounded-2xl p-6"
               >
                 <p className="italic text-slate-200 leading-relaxed mb-4 text-sm">"{t.text}"</p>
                 <p className="text-[#f4a261] font-semibold text-xs">— {t.by}</p>

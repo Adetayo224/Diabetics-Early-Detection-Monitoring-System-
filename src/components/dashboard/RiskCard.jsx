@@ -5,23 +5,23 @@ const toneMap = {
   green: {
     Icon: ShieldCheck,
     border: 'border-l-emerald-500',
-    bg: 'bg-emerald-500/[0.05]',
-    color: 'text-emerald-400',
-    val: 'text-emerald-400',
+    bg: 'bg-emerald-50',
+    color: 'text-emerald-700',
+    val: 'text-emerald-600',
   },
   amber: {
     Icon: Shield,
     border: 'border-l-amber-500',
-    bg: 'bg-amber-500/[0.05]',
-    color: 'text-amber-400',
-    val: 'text-amber-400',
+    bg: 'bg-amber-50',
+    color: 'text-amber-700',
+    val: 'text-amber-600',
   },
   red: {
     Icon: ShieldAlert,
-    border: 'border-l-red',
-    bg: 'bg-red/[0.05]',
-    color: 'text-red-300',
-    val: 'text-red-300',
+    border: 'border-l-[#E63946]',
+    bg: 'bg-red-50',
+    color: 'text-[#E63946]',
+    val: 'text-[#E63946]',
   },
 }
 
@@ -30,7 +30,7 @@ export function RiskCard({ risk }) {
   const { Icon } = t
   return (
     <Card title="AI Risk Assessment">
-      <div className="flex items-center justify-between bg-surface-2 rounded-xl px-4 py-3 mb-3">
+      <div className="flex items-center justify-between bg-slate-50 rounded-xl px-4 py-3 mb-3">
         <span className="text-sm text-muted">Current Risk Level</span>
         <span className={`font-mono font-semibold text-xl ${t.val}`}>{risk.level}</span>
       </div>
@@ -40,7 +40,7 @@ export function RiskCard({ risk }) {
           Risk: {risk.level}
         </div>
         <p className="text-sm text-muted leading-relaxed">
-          <strong className="text-white">Recommendation:</strong>
+          <strong className="text-slate-900">Recommendation:</strong>
           <br />
           {risk.rec}
         </p>

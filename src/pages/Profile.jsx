@@ -5,10 +5,10 @@ import { useViewingPair } from '../hooks/useViewingPair.jsx'
 
 function Row({ k, v, mono, color }) {
   return (
-    <div className="flex items-center justify-between px-4 py-3 bg-surface-2 rounded-xl text-sm">
+    <div className="flex items-center justify-between px-4 py-3 bg-slate-50 rounded-xl text-sm border border-slate-200">
       <span className="text-muted">{k}</span>
       <span
-        className={`font-medium ${mono ? 'font-mono' : ''}`}
+        className={`font-medium text-slate-900 ${mono ? 'font-mono' : ''}`}
         style={color ? { color } : undefined}
       >
         {v}

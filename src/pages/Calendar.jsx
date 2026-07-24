@@ -18,18 +18,18 @@ export default function Calendar() {
           {APPTS.map((a) => (
             <div
               key={a.title}
-              className="flex items-center justify-between p-4 bg-surface-2 rounded-xl"
+              className="flex items-center justify-between p-4 bg-slate-50 rounded-xl border border-slate-200"
             >
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-blue/15 text-blue-400 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center">
                   <CalendarClock size={18} />
                 </div>
                 <div>
-                  <div className="text-sm font-medium">{a.title}</div>
+                  <div className="text-sm font-medium text-slate-900">{a.title}</div>
                   <div className="text-xs text-muted-2 mt-0.5">{a.sub}</div>
                 </div>
               </div>
-              <span className="font-mono text-sm text-blue-400">{a.date}</span>
+              <span className="font-mono text-sm text-blue-700">{a.date}</span>
             </div>
           ))}
         </div>
